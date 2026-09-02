@@ -8,10 +8,10 @@ public class PlayerShoot : MonoBehaviour
     GameObject spawned_Bullet;
     Rigidbody _bullet_RB;
     Vector3 hit_pos;
-    
+
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -20,7 +20,6 @@ public class PlayerShoot : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             GetHitPosition();
-            Shoot();            
         }
     }
     void GetHitPosition()
@@ -28,11 +27,19 @@ public class PlayerShoot : MonoBehaviour
         RaycastHit hit;
         Physics.Raycast(_Firepoint.position, _Firepoint.forward, out hit, Mathf.Infinity);
         hit_pos = hit.transform.position;
-        transform.LookAt(_Firepoint);
+        if (hit.transform != null)
+        {
+            _Firepoint.transform.LookAt(hit_pos);
+        }
+        else
+        {
+            _Firepoint.rotation = new Quaternion(0,0,0,0);
+        }
+        Shoot();
     }
     void Shoot()
     {
-        spawned_Bullet = Instantiate(_Bullet,_Firepoint.position,_Firepoint.rotation);
+        spawned_Bullet = Instantiate(_Bullet, _Firepoint.position, _Firepoint.rotation);
         _bullet_RB = spawned_Bullet.GetComponent<Rigidbody>();
         _bullet_RB.AddForce(_Firepoint.forward * _FireSpeed * 100);
     }
