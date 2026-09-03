@@ -22,6 +22,8 @@ public class PauseMenuScript : MonoBehaviour
             else
             {
                 Time.timeScale = 1;
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
             }
         }
     }
