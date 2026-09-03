@@ -3,24 +3,31 @@ using Unity.Mathematics;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 public class EnemySpawnerScript : MonoBehaviour
 {
+    public int SpawnCredit = 5;
+    public int wavecount = 0;
     public List<GameObject> Enemies;
     public float SpawnRadius = 10;
     public GameObject prefab;
     public quaternion SpawnRotation = new quaternion(0, 0, 0, 0);
+    
     void SpawnWave()
     {
-        int i = 5;
-        
-        while(i != 0)
+        while(SpawnCredit != 0)
         {
-            Vector3 position = new Vector3(UnityEngine.Random.Range(-SpawnRadius, SpawnRadius), UnityEngine.Random.Range(-SpawnRadius, SpawnRadius), UnityEngine.Random.Range(-SpawnRadius, SpawnRadius));
+            Vector3 position = new Vector3(UnityEngine.Random.Range(-SpawnRadius, SpawnRadius), UnityEngine.Random.Range(0, SpawnRadius), UnityEngine.Random.Range(-SpawnRadius, SpawnRadius));
             Enemies.Add(Instantiate(prefab, position, SpawnRotation));
-            i = i-1;
+            SpawnCredit = SpawnCredit-1;
         }
-        
+        wavecount++;
+        SpawnCredit = wavecount + 5;
+    }
+    void CleanEnemyList()
+    {
+        Enemies.RemoveAll(enemy => enemy == null);
     }
 
     void FixedUpdate()
@@ -31,5 +38,9 @@ public class EnemySpawnerScript : MonoBehaviour
             SpawnWave();
         }
         
+    }
+    void Update()
+    {
+        CleanEnemyList();
     }
 }
