@@ -7,6 +7,7 @@ using System.Runtime.CompilerServices;
 
 public class EnemySpawnerScript : MonoBehaviour
 {
+    public int enemyOneCost = 1;
     public int SpawnCredit = 5;
     public int wavecount = 0;
     public List<GameObject> Enemies;
@@ -20,7 +21,7 @@ public class EnemySpawnerScript : MonoBehaviour
         {
             Vector3 position = new Vector3(UnityEngine.Random.Range(-SpawnRadius, SpawnRadius), UnityEngine.Random.Range(0, SpawnRadius), UnityEngine.Random.Range(-SpawnRadius, SpawnRadius));
             Enemies.Add(Instantiate(prefab, position, SpawnRotation));
-            SpawnCredit = SpawnCredit-1;
+            SpawnCredit = SpawnCredit-enemyOneCost;
         }
         wavecount++;
         SpawnCredit = wavecount + 5;
