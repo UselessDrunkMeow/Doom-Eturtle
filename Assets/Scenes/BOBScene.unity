@@ -354,7 +354,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawnerScript
   SpawnRadius: 10
-  prefab: {fileID: 1805310672}
+  prefab: {fileID: 7967036213534860592, guid: b751883283c1a423c9be1faeaf6c7a3e, type: 3}
   SpawnRotation:
     value:
       x: 0
