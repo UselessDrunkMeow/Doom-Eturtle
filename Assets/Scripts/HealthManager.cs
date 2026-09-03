@@ -6,17 +6,14 @@ public class HealthManager : MonoBehaviour
 {
     public float _MaxHealth;
     public UnityEvent OnDeath;
-    float currentHealth;
-
-    void Start()
+    public float _CurrentHealth;
+    private void Start()
     {
-        
+        _CurrentHealth = _MaxHealth;
     }
-
-    // Update is called once per frame
     void Update()
     {
-        if(currentHealth <= 0)
+        if(_CurrentHealth <= 0)
         {
             OnDeath.Invoke();
         }

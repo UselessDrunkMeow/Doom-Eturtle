@@ -35,7 +35,7 @@ public class PlayerShoot : MonoBehaviour
             _Firepoint.transform.LookAt(hit_pos);
 
             //Debug check to visually see where the hit point is located.
-            Instantiate(testsphere, hit_pos, new Quaternion(0,0,0,0));
+            //Instantiate(testsphere, hit_pos, new Quaternion(0,0,0,0));
         }
         else
         {

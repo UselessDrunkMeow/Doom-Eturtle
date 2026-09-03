@@ -241,7 +241,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   _Firepoint: {fileID: 13510503862062782}
   _CameraPoint: {fileID: 3153341304644917837}
-  _Bullet: {fileID: 0}
+  _Bullet: {fileID: 2022262299169323760, guid: f085767607f094d47919582c2ed412aa, type: 3}
   _FireSpeed: 20
   _Mask:
     serializedVersion: 2

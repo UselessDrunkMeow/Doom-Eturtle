@@ -19,7 +19,7 @@ public class EnemySpawnerScript : MonoBehaviour
     {
         while(SpawnCredit != 0)
         {
-            Vector3 position = new Vector3(UnityEngine.Random.Range(-SpawnRadius, SpawnRadius), UnityEngine.Random.Range(0, SpawnRadius), UnityEngine.Random.Range(-SpawnRadius, SpawnRadius));
+            Vector3 position = new Vector3(UnityEngine.Random.Range(-SpawnRadius, SpawnRadius), 0, UnityEngine.Random.Range(-SpawnRadius, SpawnRadius));
             Enemies.Add(Instantiate(prefab, position, SpawnRotation));
             SpawnCredit = SpawnCredit-enemyOneCost;
         }
