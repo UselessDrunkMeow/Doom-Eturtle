@@ -353,10 +353,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eddcd8f1b2b614047ab1543b93acd0fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawnerScript
-  point: 5
+  SpawnCredit: 5
   wavecount: 0
   Enemies: []
-  SpawnRadius: 10
+  SpawnRadius: 5
   prefab: {fileID: 7132828290958961574, guid: d07d70a75f15c4f85bfb048b603d29f1, type: 3}
   SpawnRotation:
     value:
