@@ -2459,7 +2459,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db4414ea718be4f98badca11d55d0698, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayButtonScript
-  scene: BOBScene
+  scene: Prototype Scene
 --- !u!1 &2073656944
 GameObject:
   m_ObjectHideFlags: 0
