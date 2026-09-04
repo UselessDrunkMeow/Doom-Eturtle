@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0ae8fc049bcae4d4ba73daf439b519e6
+guid: e4c7f9f7afe69487f860c199b2270d62
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Breath of the House
+  - Scary Brusher
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

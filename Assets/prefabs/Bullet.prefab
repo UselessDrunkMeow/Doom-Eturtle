@@ -97,6 +97,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cd27bd43664e924890ec22ea009731b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  MaxProjectileLifetime: 5
+  ProjectileLifetime: 0
 --- !u!1001 &6807678474594427254
 PrefabInstance:
   m_ObjectHideFlags: 0
