@@ -7,5 +7,6 @@ public class ExitToMenuButton : MonoBehaviour
     public void ButtonPress()
     {
         SceneManager.LoadScene("MainMenu");
+        print("loaded mainmenu");
     }
 }
