@@ -11,6 +11,7 @@ public class EnemyBrain : MonoBehaviour
     public float _AttackCooldown;
     public float _DamageStun;
     public LayerMask _LayerMask;
+    public Animation Attack1;
 
     HealthManager healthManager;
     Material color;
@@ -54,7 +55,7 @@ public class EnemyBrain : MonoBehaviour
         agent.isStopped = true;
         //color.color = UnityEngine.Color.yellow;
         yield return new WaitForSeconds(_AttackCooldown / 2);
-
+        gameObject.GetComponent<PlayAnimation>().PlayAnimationFunction(Attack1);
         //color.color = UnityEngine.Color.orange;
 
         hitPlayer = Physics.Raycast(transform.position, transform.forward, out hit, _AttackRange, _LayerMask);
@@ -70,7 +71,7 @@ public class EnemyBrain : MonoBehaviour
     //Deletes the enemy after its HP reaches 0
     public void onDeath()
     {
-        Destroy(this.gameObject);
+        gameObject.SetActive(false);
     }
 
     IEnumerator Damage()

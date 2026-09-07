@@ -12,7 +12,9 @@ GameObject:
   - component: {fileID: 4142281481031579136}
   - component: {fileID: 5183891637495744154}
   - component: {fileID: 5481654096842285103}
+  - component: {fileID: 8442319425142126637}
   - component: {fileID: 8033652402588620067}
+  - component: {fileID: 1610677670895118286}
   m_Layer: 0
   m_Name: JheffreighyEnemy
   m_TagString: Untagged
@@ -77,6 +79,7 @@ MonoBehaviour:
   _LayerMask:
     serializedVersion: 2
     m_Bits: 0
+  Attack1: {fileID: 392945979940084877}
 --- !u!114 &5481654096842285103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106,6 +109,18 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   _CurrentHealth: 5
+--- !u!114 &8442319425142126637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5849746235925260095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecf9bb0904dfc4429b4c2f8a1628e20c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayAnimation
 --- !u!135 &8033652402588620067
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -127,6 +142,23 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.3
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!111 &1610677670895118286
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5849746235925260095}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Animation: {fileID: 7400000, guid: 3cab52bd39b9a5f4fb028f9ae0ecbc91, type: 3}
+  m_Animations:
+  - {fileID: 7400000, guid: 3cab52bd39b9a5f4fb028f9ae0ecbc91, type: 3}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_UpdateMode: 0
+  m_CullingType: 0
 --- !u!1 &6810312515229511424
 GameObject:
   m_ObjectHideFlags: 0
@@ -331,7 +363,7 @@ Animator:
   m_GameObject: {fileID: 6810312515229511434}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 1db38da97b6ad094dbca967f13dd370f, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e1e78fcd5772a411a9afb262e0ac0479, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -416,6 +448,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6810312515229152052}
   - component: {fileID: 6810312515226329604}
+  - component: {fileID: 392945979940084877}
   m_Layer: 0
   m_Name: StoneMonster
   m_TagString: Untagged
@@ -505,3 +538,20 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.054999024, y: -0.15129942, z: 0.000000029802322}
     m_Extent: {x: 0.651101, y: 0.6444122, z: 0.4401703}
   m_DirtyAABB: 0
+--- !u!111 &392945979940084877
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6810312515229511444}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Animation: {fileID: 7400000, guid: 3cab52bd39b9a5f4fb028f9ae0ecbc91, type: 3}
+  m_Animations:
+  - {fileID: 7400000, guid: 3cab52bd39b9a5f4fb028f9ae0ecbc91, type: 3}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_UpdateMode: 0
+  m_CullingType: 0
