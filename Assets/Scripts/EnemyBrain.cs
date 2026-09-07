@@ -23,7 +23,7 @@ public class EnemyBrain : MonoBehaviour
     {
         playerPos = FindAnyObjectByType<PlayerShoot>().transform;
         agent = GetComponent<NavMeshAgent>();
-        color = GetComponentInChildren<MeshRenderer>().material;
+        //color = GetComponentInChildren<MeshRenderer>().material;
         healthManager = GetComponent<HealthManager>();
         agent.speed = _Speed;
     }
@@ -42,7 +42,7 @@ public class EnemyBrain : MonoBehaviour
     }
     public void Chase()
     {
-        color.color = UnityEngine.Color.red;
+        //color.color = UnityEngine.Color.red;
         agent.isStopped = false;
     }
 
@@ -52,10 +52,10 @@ public class EnemyBrain : MonoBehaviour
         RaycastHit hit;
 
         agent.isStopped = true;
-        color.color = UnityEngine.Color.yellow;
+        //color.color = UnityEngine.Color.yellow;
         yield return new WaitForSeconds(_AttackCooldown / 2);
 
-        color.color = UnityEngine.Color.orange;
+        //color.color = UnityEngine.Color.orange;
 
         hitPlayer = Physics.Raycast(transform.position, transform.forward, out hit, _AttackRange, _LayerMask);
         if (hitPlayer)
@@ -76,10 +76,10 @@ public class EnemyBrain : MonoBehaviour
     IEnumerator Damage()
     {
         healthManager._CurrentHealth--;
-        color.color = UnityEngine.Color.darkRed;
+        //color.color = UnityEngine.Color.darkRed;
         agent.isStopped = true;
         yield return new WaitForSeconds(_DamageStun);
-        color.color = UnityEngine.Color.red;
+        //color.color = UnityEngine.Color.red;
         agent.isStopped = false;
     }
 

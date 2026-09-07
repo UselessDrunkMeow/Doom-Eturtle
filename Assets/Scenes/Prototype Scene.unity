@@ -134,7 +134,15 @@ PrefabInstance:
     - target: {fileID: 6188095959552030604, guid: 3d24b99291244450bbc18e9c84e58ec0, type: 3}
       propertyPath: prefab
       value: 
-      objectReference: {fileID: 5849746235925260095, guid: cf922c05e782bb941a13e8d915f67ef9, type: 3}
+      objectReference: {fileID: 5849746235925260095, guid: c060e779bea204bc882002bcdfc1e3c6, type: 3}
+    - target: {fileID: 6188095959552030604, guid: 3d24b99291244450bbc18e9c84e58ec0, type: 3}
+      propertyPath: wavecount
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6188095959552030604, guid: 3d24b99291244450bbc18e9c84e58ec0, type: 3}
+      propertyPath: SpawnCredit
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 6943439933181817210, guid: 3d24b99291244450bbc18e9c84e58ec0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 9.345403
@@ -623,6 +631,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 474379191303060651, guid: 935f521a6e167f0469a11097755749c4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1954822134}
+    - targetCorrespondingSourceObject: {fileID: 474379191303060651, guid: 935f521a6e167f0469a11097755749c4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1954822142}
   m_SourcePrefab: {fileID: 100100000, guid: 935f521a6e167f0469a11097755749c4, type: 3}
 --- !u!1001 &1821018331
 PrefabInstance:
@@ -905,6 +916,22 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _CurrentHealth: 0
+--- !u!114 &1954822142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1954822126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 761097d3a7fd54a3fb6b7229d3a4920a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ObjectPool
+  pooledObjects: []
+  objectToPool: {fileID: 5849746235925260095, guid: a4e7aadf3e4d14eac8c46514e4807470, type: 3}
+  amountToPool: 100
+  shouldExpand: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
