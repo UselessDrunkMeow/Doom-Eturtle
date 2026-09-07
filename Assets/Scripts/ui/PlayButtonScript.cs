@@ -9,5 +9,8 @@ public class PlayButtonScript : MonoBehaviour
     {
         SceneManager.LoadScene(scene);
         print("scene switched");
+        Time.timeScale = 1;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 }
