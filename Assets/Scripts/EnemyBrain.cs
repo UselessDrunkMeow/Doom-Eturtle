@@ -10,12 +10,14 @@ public class EnemyBrain : MonoBehaviour
     public float _AttackRange;
     public float _AttackCooldown;
     public float _DamageStun;
+    public LayerMask _LayerMask;
 
     HealthManager healthManager;
     Material color;
     NavMeshAgent agent;
     Transform playerPos;
     float distance;
+    bool hitPlayer;
 
     void Start()
     {
@@ -23,9 +25,9 @@ public class EnemyBrain : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         color = GetComponentInChildren<MeshRenderer>().material;
         healthManager = GetComponent<HealthManager>();
-        agent.speed = _Speed;      
+        agent.speed = _Speed;
     }
-    
+
     void Update()
     {   //Set agent desitnation to the players possition every frame so it can chase it.
         agent.SetDestination(playerPos.position);
@@ -34,8 +36,9 @@ public class EnemyBrain : MonoBehaviour
         distance = Vector3.Distance(transform.position, playerPos.position);
         if (distance <= _AttackRange)
         {
-            StartCoroutine(Attack());            
+            StartCoroutine(Attack());
         }
+        Debug.DrawRay(transform.transform.position, transform.forward * _AttackRange, UnityEngine.Color.purple);
     }
     public void Chase()
     {
@@ -46,9 +49,21 @@ public class EnemyBrain : MonoBehaviour
     //Freezes the enemy in place as it attacks, allowing it to move again after a short cooldown.
     IEnumerator Attack()
     {
+        RaycastHit hit;
+
         agent.isStopped = true;
         color.color = UnityEngine.Color.yellow;
-        yield return new WaitForSeconds(_AttackCooldown);
+        yield return new WaitForSeconds(_AttackCooldown / 2);
+
+        color.color = UnityEngine.Color.orange;
+
+        hitPlayer = Physics.Raycast(transform.position, transform.forward, out hit, _AttackRange, _LayerMask);
+        if (hitPlayer)
+        {
+            print(" WAafsdfhsigdsiughsdjghdsjghjiWGRUGDIFUR^ST%RFUNJMESXHNUJDEFRHJUDEFRHNJUK");
+        }
+        yield return new WaitForSeconds(_AttackCooldown / 2);
+
         Chase();
     }
 
@@ -67,7 +82,7 @@ public class EnemyBrain : MonoBehaviour
         color.color = UnityEngine.Color.red;
         agent.isStopped = false;
     }
-    
+
     private void OnTriggerEnter(Collider other)
     {
         if (other != null)
@@ -79,5 +94,5 @@ public class EnemyBrain : MonoBehaviour
                 StartCoroutine(Damage());
             }
         }
-    }
+    }  
 }
