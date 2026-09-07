@@ -52,7 +52,7 @@ public class EnemyBrain : MonoBehaviour
         RaycastHit hit;
 
         agent.isStopped = true;
-        color.color = UnityEngine.Color.yellow;
+        //color.color = UnityEngine.Color.yellow;
         yield return new WaitForSeconds(_AttackCooldown / 2);
 
         //color.color = UnityEngine.Color.orange;
