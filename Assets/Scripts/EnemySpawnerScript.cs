@@ -23,7 +23,7 @@ public class EnemySpawnerScript : MonoBehaviour
             SpawnCredit = SpawnCredit-enemyOneCost;
         }
         wavecount++;
-        SpawnCredit = wavecount + 5;
+        SpawnCredit = wavecount + SpawnCredit;
     }
     void CleanEnemyList()
     {

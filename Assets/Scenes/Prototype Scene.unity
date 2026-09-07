@@ -137,7 +137,11 @@ PrefabInstance:
       objectReference: {fileID: 5849746235925260095, guid: c060e779bea204bc882002bcdfc1e3c6, type: 3}
     - target: {fileID: 6188095959552030604, guid: 3d24b99291244450bbc18e9c84e58ec0, type: 3}
       propertyPath: wavecount
-      value: 96
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6188095959552030604, guid: 3d24b99291244450bbc18e9c84e58ec0, type: 3}
+      propertyPath: SpawnCredit
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6943439933181817210, guid: 3d24b99291244450bbc18e9c84e58ec0, type: 3}
       propertyPath: m_LocalPosition.x
