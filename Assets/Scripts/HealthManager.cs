@@ -11,6 +11,10 @@ public class HealthManager : MonoBehaviour
     {
         _CurrentHealth = _MaxHealth;
     }
+    void OnEnable()
+    {
+        _CurrentHealth = _MaxHealth;
+    }
     void Update()
     {
         if(_CurrentHealth <= 0)

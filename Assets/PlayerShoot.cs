@@ -47,8 +47,26 @@ public class PlayerShoot : MonoBehaviour
     //spawns the bullet prefab at the firepoints position and rotation, then adds force to shoot it forward.
     void Shoot()
     {
-        spawned_Bullet = Instantiate(_Bullet, _Firepoint.position, _Firepoint.rotation);
-        _bullet_RB = spawned_Bullet.GetComponent<Rigidbody>();
-        _bullet_RB.AddForce(_Firepoint.forward * _FireSpeed * 100);
+        GameObject PooledBullet = ObjectPool.SharedInstance.GetPooledObject("Bullet"); 
+        if (PooledBullet != null) {
+            PooledBullet.transform.position = _Firepoint.position;
+            PooledBullet.transform.rotation = _Firepoint.rotation;
+            PooledBullet.SetActive(true);
+            if (PooledBullet.TryGetComponent<Rigidbody>(out Rigidbody bulletRB))
+            {
+                // Clear lingering momentum from object pool reuse
+                bulletRB.linearVelocity = Vector3.zero;
+                bulletRB.angularVelocity = Vector3.zero;
+
+                // Fire instantly with Impulse mode
+                bulletRB.AddForce(_Firepoint.forward * _FireSpeed, ForceMode.Impulse);
+            }
+        }
+        else
+        {
+            // Pool ran out of available objects
+            Debug.LogWarning("Object Pool is empty! Expanding or waiting...");
+        }
+        //spawned_Bullet = Instantiate(_Bullet, _Firepoint.position, _Firepoint.rotation);
     }
 }

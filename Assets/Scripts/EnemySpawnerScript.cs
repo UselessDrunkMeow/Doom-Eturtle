@@ -7,6 +7,7 @@ using System.Runtime.CompilerServices;
 public class EnemySpawnerScript : MonoBehaviour
 {
     public int enemyOneCost = 1;
+    public int enemyTwoCost = 20;
     public BoxCollider boxCollider;
     public int SpawnCredit = 5;
     public int wavecount = 0;
@@ -29,7 +30,7 @@ public class EnemySpawnerScript : MonoBehaviour
     {
         while(SpawnCredit != 0)
         {
-            GameObject PooledEnemy = ObjectPool.SharedInstance.GetPooledObject(); 
+            GameObject PooledEnemy = ObjectPool.SharedInstance.GetPooledObject("JheffreighyEnemy"); 
             Vector3 position = new Vector3(UnityEngine.Random.Range(corner1.x, corner2.x), 0, UnityEngine.Random.Range(corner1.z, corner2.z));
             if (PooledEnemy != null) {
                 PooledEnemy.transform.position = position;
