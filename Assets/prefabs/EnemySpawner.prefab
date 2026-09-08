@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6943439933181817210}
   - component: {fileID: 6188095959552030604}
+  - component: {fileID: 6512276291634349914}
   m_Layer: 0
   m_Name: EnemySpawner
   m_TagString: Untagged
@@ -27,7 +28,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.62769, y: -0, z: 5.4473}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 5.4901, y: 5.4901, z: 5.4901}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -45,14 +46,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawnerScript
   enemyOneCost: 1
+  boxCollider: {fileID: 6512276291634349914}
   SpawnCredit: 5
   wavecount: 0
   Enemies: []
-  SpawnRadius: 5
-  prefab: {fileID: 7132828290958961574, guid: d07d70a75f15c4f85bfb048b603d29f1, type: 3}
   SpawnRotation:
     value:
       x: 0
       y: 0
       z: 0
       w: 0
+  corner1: {x: 0, y: 0, z: 0}
+  corner2: {x: 0, y: 0, z: 0}
+  distance: 0
+  maxdistance: 20
+  Player: {fileID: 0}
+--- !u!65 &6512276291634349914
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3280043313060364780}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}

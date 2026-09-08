@@ -132,28 +132,24 @@ PrefabInstance:
       value: EnemySpawner
       objectReference: {fileID: 0}
     - target: {fileID: 6188095959552030604, guid: 3d24b99291244450bbc18e9c84e58ec0, type: 3}
-      propertyPath: prefab
+      propertyPath: Player
       value: 
-      objectReference: {fileID: 5849746235925260095, guid: c060e779bea204bc882002bcdfc1e3c6, type: 3}
+      objectReference: {fileID: 1954822126}
     - target: {fileID: 6188095959552030604, guid: 3d24b99291244450bbc18e9c84e58ec0, type: 3}
       propertyPath: wavecount
       value: 10000
       objectReference: {fileID: 0}
-    - target: {fileID: 6188095959552030604, guid: 3d24b99291244450bbc18e9c84e58ec0, type: 3}
-      propertyPath: SpawnCredit
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 6943439933181817210, guid: 3d24b99291244450bbc18e9c84e58ec0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.345403
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 6943439933181817210, guid: 3d24b99291244450bbc18e9c84e58ec0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.00000009433052
+      value: 2.83
       objectReference: {fileID: 0}
     - target: {fileID: 6943439933181817210, guid: 3d24b99291244450bbc18e9c84e58ec0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.3509238
+      value: 25.55
       objectReference: {fileID: 0}
     - target: {fileID: 6943439933181817210, guid: 3d24b99291244450bbc18e9c84e58ec0, type: 3}
       propertyPath: m_LocalRotation.w

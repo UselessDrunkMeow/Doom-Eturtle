@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Drawing;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
@@ -54,7 +56,7 @@ public class EnemyBrain : MonoBehaviour
         agent.isStopped = true;
         //color.color = UnityEngine.Color.yellow;
         yield return new WaitForSeconds(_AttackCooldown / 2);
-
+        gameObject.GetComponent<PlayAnimation>().PlayAnimationFunction("Attack");
         //color.color = UnityEngine.Color.orange;
 
         hitPlayer = Physics.Raycast(transform.position, transform.forward, out hit, _AttackRange, _LayerMask);
@@ -70,12 +72,21 @@ public class EnemyBrain : MonoBehaviour
     //Deletes the enemy after its HP reaches 0
     public void onDeath()
     {
-        Destroy(this.gameObject);
+        StartCoroutine(DeathCoroutine());
     }
+    private IEnumerator DeathCoroutine()
+{
+    gameObject.GetComponent<PlayAnimation>().PlayAnimationFunction("Death");
+
+    yield return new WaitForSeconds(1f);
+
+    gameObject.SetActive(false);
+}
 
     IEnumerator Damage()
     {
         healthManager._CurrentHealth--;
+        gameObject.GetComponent<PlayAnimation>().PlayAnimationFunction("TakeDamage");
         //color.color = UnityEngine.Color.darkRed;
         agent.isStopped = true;
         yield return new WaitForSeconds(_DamageStun);

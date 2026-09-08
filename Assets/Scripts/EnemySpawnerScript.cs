@@ -7,20 +7,30 @@ using System.Runtime.CompilerServices;
 public class EnemySpawnerScript : MonoBehaviour
 {
     public int enemyOneCost = 1;
+    public BoxCollider boxCollider;
     public int SpawnCredit = 5;
     public int wavecount = 0;
     public List<GameObject> Enemies;
-    public float SpawnRadius = 10;
 
     public quaternion SpawnRotation = new quaternion(0, 0, 0, 0);
+    public Vector3 corner1;
+    public Vector3 corner2;
+    public float distance;
+    public float maxdistance;
+    public GameObject Player;
     
+    void Start()
+    {
+        Vector3 halfSize = boxCollider.size * 0.5f;
+        corner1 = boxCollider.transform.TransformPoint(boxCollider.center + new Vector3(-halfSize.x, -halfSize.y, -halfSize.z));
+        corner2 = boxCollider.transform.TransformPoint(boxCollider.center + new Vector3(halfSize.x, -halfSize.y, halfSize.z));
+    }
     void SpawnWave()
     {
-        
         while(SpawnCredit != 0)
         {
             GameObject PooledEnemy = ObjectPool.SharedInstance.GetPooledObject(); 
-            Vector3 position = new Vector3(UnityEngine.Random.Range(-SpawnRadius, SpawnRadius), 0, UnityEngine.Random.Range(-SpawnRadius, SpawnRadius));
+            Vector3 position = new Vector3(UnityEngine.Random.Range(corner1.x, corner2.x), 0, UnityEngine.Random.Range(corner1.z, corner2.z));
             if (PooledEnemy != null) {
                 PooledEnemy.transform.position = position;
                 PooledEnemy.SetActive(true);
@@ -35,7 +45,7 @@ public class EnemySpawnerScript : MonoBehaviour
             }
         }
         wavecount++;
-        SpawnCredit = wavecount + SpawnCredit;
+        SpawnCredit = wavecount + 5;
     }
     void CleanEnemyList()
     {
@@ -43,9 +53,11 @@ public class EnemySpawnerScript : MonoBehaviour
     }
     void Update()
     {
+        distance = Vector3.Distance(Player.transform.position, boxCollider.transform.position);
         CleanEnemyList();
-        if (Enemies.Count == 0)
+        if (Enemies.Count == 0 && distance >= maxdistance)
         {
+            Debug.Log("spawn wave");
             SpawnWave();
         }
     }
