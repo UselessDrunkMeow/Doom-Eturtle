@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 
 public class EnemySpawnerScript : MonoBehaviour
 {
+    public string EnemyToSpawn = "Æpfft-steyghnn";
     public int enemyOneCost = 1;
     public int enemyTwoCost = 20;
     public BoxCollider boxCollider;
@@ -30,7 +31,7 @@ public class EnemySpawnerScript : MonoBehaviour
     {
         while(SpawnCredit != 0)
         {
-            GameObject PooledEnemy = ObjectPool.SharedInstance.GetPooledObject("JheffreighyEnemy"); 
+            GameObject PooledEnemy = ObjectPool.SharedInstance.GetPooledObject(EnemyToSpawn); 
             Vector3 position = new Vector3(UnityEngine.Random.Range(corner1.x, corner2.x), 0, UnityEngine.Random.Range(corner1.z, corner2.z));
             if (PooledEnemy != null) {
                 PooledEnemy.transform.position = position;
