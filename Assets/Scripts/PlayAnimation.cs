@@ -14,6 +14,7 @@ public class PlayAnimation : MonoBehaviour
         }
         else if (Animation == "Death")
         {
+            anim.SetBool("IsRunning", false);
             anim.SetTrigger("Death");
         }
         else if (Animation == "Attack")
@@ -24,6 +25,18 @@ public class PlayAnimation : MonoBehaviour
         {
             IsRunning = !IsRunning;
             anim.SetBool("IsRunning", IsRunning);
+        }
+        else if(Animation == "AttackRandom")
+        {
+            int AttackRND = UnityEngine.Random.Range(0, 2);
+            if (AttackRND == 0)
+            {
+                anim.SetTrigger("Attack");
+            }
+            else
+            {
+                anim.SetTrigger("Attack2");
+            }
         }
     }
 }

@@ -6,7 +6,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyBrain : MonoBehaviour
+public class EnemyEpsteinBrain : MonoBehaviour
 {
     public float _Speed;
     public float _AttackRange;
@@ -56,7 +56,7 @@ public class EnemyBrain : MonoBehaviour
         agent.isStopped = true;
         //color.color = UnityEngine.Color.yellow;
         yield return new WaitForSeconds(_AttackCooldown / 2);
-        gameObject.GetComponent<PlayAnimation>().PlayAnimationFunction("Attack");
+        gameObject.GetComponent<PlayAnimation>().PlayAnimationFunction("RandomAttack");
         //color.color = UnityEngine.Color.orange;
 
         hitPlayer = Physics.Raycast(transform.position, transform.forward, out hit, _AttackRange, _LayerMask);
@@ -76,13 +76,13 @@ public class EnemyBrain : MonoBehaviour
         StartCoroutine(DeathCoroutine());
     }
     private IEnumerator DeathCoroutine()
-{
-    gameObject.GetComponent<PlayAnimation>().PlayAnimationFunction("Death");
+    {
+        gameObject.GetComponent<PlayAnimation>().PlayAnimationFunction("Death");
 
-    yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1f);
 
-    gameObject.SetActive(false);
-}
+        gameObject.SetActive(false);
+    }
 
     IEnumerator Damage()
     {
