@@ -21,8 +21,14 @@ public class EnemyEpsteinBrain : MonoBehaviour
     float distance;
     bool hitPlayer;
 
+    void OnEnable()
+    {
+        healthManager = GetComponent<HealthManager>();
+        healthManager.enabled = true;
+    }
     void Start()
     {
+        gameObject.GetComponent<PlayAnimation>().PlayAnimationFunction("Run");
         playerPos = FindAnyObjectByType<PlayerShoot>().transform;
         agent = GetComponent<NavMeshAgent>();
         //color = GetComponentInChildren<MeshRenderer>().material;
@@ -72,7 +78,7 @@ public class EnemyEpsteinBrain : MonoBehaviour
     //Deletes the enemy after its HP reaches 0
     public void onDeath()
     {
-        healthManager = null;
+        healthManager.enabled = false;
         StartCoroutine(DeathCoroutine());
     }
     private IEnumerator DeathCoroutine()
@@ -86,7 +92,7 @@ public class EnemyEpsteinBrain : MonoBehaviour
 
     IEnumerator Damage()
     {
-        if (healthManager != null)
+        if (healthManager.enabled != false)
         {
             healthManager._CurrentHealth--;
             gameObject.GetComponent<PlayAnimation>().PlayAnimationFunction("TakeDamage");

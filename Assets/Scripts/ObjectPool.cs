@@ -5,10 +5,19 @@ public class ObjectPool : MonoBehaviour
 {
     public static ObjectPool SharedInstance;
 
-    public List<GameObject> pooledObjects;
-    public GameObject objectToPool;
-    public int amountToPool = 10;
-    public bool shouldExpand = true; // Optional: auto-expand pool if empty
+    [System.Serializable]
+    public class PoolItem
+    {
+        public string poolTag;          // Identifier string (e.g., "Bullet", "Enemy")
+        public GameObject objectToPool; // Prefab to instantiate
+        public int amountToPool = 10;   // Initial size
+        public bool shouldExpand = true;// Expand if empty
+        
+        [HideInInspector] 
+        public List<GameObject> pooledObjects = new List<GameObject>();
+    }
+    [Header("Pool Definitions")]
+    public List<PoolItem> itemsToPool;
 
     void Awake()
     {
@@ -24,43 +33,56 @@ public class ObjectPool : MonoBehaviour
 
     void Start()
     {
-        pooledObjects = new List<GameObject>();
-
-        // Populate pool initially
-        for (int i = 0; i < amountToPool; i++)
+        foreach (PoolItem item in itemsToPool)
         {
-            GameObject tmp = Instantiate(objectToPool);
-            tmp.SetActive(false);
-            pooledObjects.Add(tmp);
+            item.pooledObjects = new List<GameObject>();
+
+            for (int i = 0; i < item.amountToPool; i++)
+            {
+                GameObject tmp = Instantiate(item.objectToPool);
+                tmp.SetActive(false);
+                item.pooledObjects.Add(tmp);
+            }
         }
     }
-
-    public GameObject GetPooledObject()
+    /// <summary>
+    /// Fetches an available pooled object by its string tag.
+    /// </summary>
+    public GameObject GetPooledObject(string tag)
     {
-        // Iterate over the actual list count (not hardcoded amountToPool)
-        for (int i = 0; i < pooledObjects.Count; i++)
+        // Find the pool item matching the requested tag
+        PoolItem item = itemsToPool.Find(p => p.poolTag == tag);
+
+        if (item == null)
         {
-            // 1. Clean up missing/destroyed references safely
-            if (pooledObjects[i] == null)
+            Debug.LogWarning($"ObjectPool: Pool with tag '{tag}' was not found!");
+            return null;
+        }
+
+        // 1. Iterate through existing items in this specific pool
+        for (int i = 0; i < item.pooledObjects.Count; i++)
+        {
+            // Clean up missing/destroyed references
+            if (item.pooledObjects[i] == null)
             {
-                pooledObjects.RemoveAt(i);
-                i--; // Adjust index after removal
+                item.pooledObjects.RemoveAt(i);
+                i--;
                 continue;
             }
 
-            // 2. Return an available inactive object
-            if (!pooledObjects[i].activeInHierarchy)
+            // Return an available inactive object
+            if (!item.pooledObjects[i].activeInHierarchy)
             {
-                return pooledObjects[i];
+                return item.pooledObjects[i];
             }
         }
 
-        // 3. Dynamically expand pool if enabled and all objects are active
-        if (shouldExpand)
+        // 2. Expand pool dynamically if enabled for this item
+        if (item.shouldExpand)
         {
-            GameObject tmp = Instantiate(objectToPool);
+            GameObject tmp = Instantiate(item.objectToPool);
             tmp.SetActive(false);
-            pooledObjects.Add(tmp);
+            item.pooledObjects.Add(tmp);
             return tmp;
         }
 
