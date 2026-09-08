@@ -1,13 +1,29 @@
+using Unity.VisualScripting;
 using UnityEngine;
+
 
 public class PlayAnimation : MonoBehaviour
 {
-    public void PlayAnimationFunction(Animation anim)
+    private bool IsRunning = false;
+    public Animator anim;
+    public void PlayAnimationFunction(string Animation)
     {
-        anim = GetComponent<Animation>();
-        foreach (AnimationState state in anim)
+        if (Animation == "TakeDamage")
         {
-            state.speed = 1F;
+            anim.SetTrigger("Damage");
+        }
+        else if(Animation == "Death")
+        {
+            anim.SetTrigger("Death");
+        }
+        else if(Animation == "Attack")
+        {
+            anim.SetTrigger("Attack");
+        }
+        else if (Animation == "Run")
+        {
+            IsRunning = !IsRunning;
+            anim.SetBool("IsRunning", IsRunning);
         }
     }
 }
