@@ -10,14 +10,14 @@ public class PlayAnimation : MonoBehaviour
     {
         if (Animation == "TakeDamage")
         {
-            anim.SetTrigger("Damage");
+            anim.SetTrigger("Damage");            
         }
-        else if(Animation == "Death")
+        else if (Animation == "Death")
         {
             anim.SetBool("IsRunning", false);
             anim.SetTrigger("Death");
         }
-        else if(Animation == "Attack")
+        else if (Animation == "Attack")
         {
             anim.SetTrigger("Attack");
         }
