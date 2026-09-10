@@ -22,6 +22,7 @@ public class EnemySpawnerScript : MonoBehaviour
     public float distance;
     public float maxdistance;
     public GameObject Player;
+    public List<BoxCollider> Spawnable;
     
     void Start()
     {
@@ -45,28 +46,50 @@ public class EnemySpawnerScript : MonoBehaviour
     }
     void SpawnWave()
     {
-        while(SpawnCredit != 0)
+        while (SpawnCredit != 0)
         {
-            int Col = UnityEngine.Random.Range(0, colliders.Count);
-            GameObject PooledEnemy = ObjectPool.SharedInstance.GetPooledObject(EnemyToSpawn); 
-            Vector3 position = new Vector3(
-                UnityEngine.Random.Range(cornerOne[Col].x, cornerTwo[Col].x),
-                0,
-                UnityEngine.Random.Range(cornerOne[Col].z, cornerTwo[Col].z)
-            );
-            if (PooledEnemy != null) {
+            if (Spawnable.Count == 0)
+            {
+                Debug.Log("No spawnable colliders!");
+                break;
+            }
+
+            int spawnableIndex = UnityEngine.Random.Range(0, Spawnable.Count);
+
+            BoxCollider selectedCollider = Spawnable[spawnableIndex];
+
+            int colliderIndex = colliders.IndexOf(selectedCollider);
+
+            GameObject PooledEnemy =
+                ObjectPool.SharedInstance.GetPooledObject(EnemyToSpawn);
+
+            if (PooledEnemy != null)
+            {
+                Vector3 position = new Vector3(
+                    UnityEngine.Random.Range(
+                        cornerOne[colliderIndex].x,
+                        cornerTwo[colliderIndex].x
+                    ),
+                    0,
+                    UnityEngine.Random.Range(
+                        cornerOne[colliderIndex].z,
+                        cornerTwo[colliderIndex].z
+                    )
+                );
+
                 PooledEnemy.transform.position = position;
                 PooledEnemy.SetActive(true);
                 Enemies.Add(PooledEnemy);
+
                 SpawnCredit -= enemyOneCost;
             }
             else
             {
-                // Pool ran out of available objects
                 Debug.LogWarning("Object Pool is empty! Expanding or waiting...");
-                break; 
+                break;
             }
         }
+
         wavecount++;
         SpawnCredit = wavecount + 5;
     }
@@ -76,7 +99,25 @@ public class EnemySpawnerScript : MonoBehaviour
     }
     void Update()
     {
-        distance = Vector3.Distance(Player.transform.position, boxCollider.transform.position);
+        foreach (BoxCollider collider in colliders)
+        {
+            distance = Vector3.Distance(Player.transform.position, collider.transform.position);
+            if (distance <= maxdistance)
+            {
+                if (!Spawnable.Contains(collider))
+                {
+                    Spawnable.Add(collider);
+                }
+            }
+            else
+            {
+                if (Spawnable.Contains(collider))
+                {
+                    Spawnable.Remove(collider);
+                }
+            }
+        }
+        
         CleanEnemyList();
         if (Enemies.Count == 0 && distance >= maxdistance)
         {
