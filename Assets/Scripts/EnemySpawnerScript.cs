@@ -26,7 +26,7 @@ public class EnemySpawnerScript : MonoBehaviour
     
     void Start()
     {
-        colliders.AddRange(Object.FindObjectsByType<BoxCollider>());
+        colliders.AddRange(GetComponents<BoxCollider>());
 
         foreach (BoxCollider collider in colliders)
         {
@@ -106,7 +106,7 @@ public class EnemySpawnerScript : MonoBehaviour
                 collider.transform.position
             );
 
-            if (colliderDistance <= maxdistance)
+            if (colliderDistance >= maxdistance)
             {
                 if (!Spawnable.Contains(collider))
                 {
