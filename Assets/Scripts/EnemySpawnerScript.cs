@@ -50,7 +50,7 @@ public class EnemySpawnerScript : MonoBehaviour
         {
             if (Spawnable.Count == 0)
             {
-                Debug.Log("No spawnable colliders!");
+                Debug.Log("No spawnable colliders! Player too close!");
                 break;
             }
 
@@ -101,8 +101,12 @@ public class EnemySpawnerScript : MonoBehaviour
     {
         foreach (BoxCollider collider in colliders)
         {
-            distance = Vector3.Distance(Player.transform.position, collider.transform.position);
-            if (distance <= maxdistance)
+            float colliderDistance = Vector3.Distance(
+                Player.transform.position,
+                collider.transform.position
+            );
+
+            if (colliderDistance <= maxdistance)
             {
                 if (!Spawnable.Contains(collider))
                 {
@@ -111,15 +115,13 @@ public class EnemySpawnerScript : MonoBehaviour
             }
             else
             {
-                if (Spawnable.Contains(collider))
-                {
-                    Spawnable.Remove(collider);
-                }
+                Spawnable.Remove(collider);
             }
         }
-        
+
         CleanEnemyList();
-        if (Enemies.Count == 0 && distance >= maxdistance)
+
+        if (Enemies.Count == 0 && Spawnable.Count > 0)
         {
             Debug.Log("spawn wave");
             SpawnWave();
