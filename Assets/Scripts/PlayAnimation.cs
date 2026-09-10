@@ -26,7 +26,7 @@ public class PlayAnimation : MonoBehaviour
             IsRunning = !IsRunning;
             anim.SetBool("IsRunning", IsRunning);
         }
-        else if(Animation == "AttackRandom")
+        else if(Animation == "RandomAttack")
         {
             int AttackRND = UnityEngine.Random.Range(0, 2);
             if (AttackRND == 0)

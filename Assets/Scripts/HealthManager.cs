@@ -7,6 +7,7 @@ public class HealthManager : MonoBehaviour
     public float _MaxHealth;
     public UnityEvent OnDeath;
     public float _CurrentHealth;
+    public DamageFlash _DamageFlash;
     private void Start()
     {
         _CurrentHealth = _MaxHealth;
@@ -14,6 +15,14 @@ public class HealthManager : MonoBehaviour
     void OnEnable()
     {
         _CurrentHealth = _MaxHealth;
+    }
+    public void UpdateHealth(int damage)
+    {
+        _CurrentHealth -= damage;
+        if(_DamageFlash != null)
+        {
+            _DamageFlash.Flash();
+        }
     }
     void Update()
     {

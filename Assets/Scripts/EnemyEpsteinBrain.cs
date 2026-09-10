@@ -1,3 +1,4 @@
+using StarterAssets;
 using System;
 using System.Collections;
 using System.Drawing;
@@ -12,6 +13,8 @@ public class EnemyEpsteinBrain : MonoBehaviour
     public float _AttackRange;
     public float _AttackCooldown;
     public float _DamageStun;
+    public float _AttackDelay;
+    public int _Damage;
     public LayerMask _LayerMask;
 
     HealthManager healthManager;
@@ -20,6 +23,7 @@ public class EnemyEpsteinBrain : MonoBehaviour
     Transform playerPos;
     float distance;
     bool hitPlayer;
+    bool isAttacking;
 
     void OnEnable()
     {
@@ -42,7 +46,7 @@ public class EnemyEpsteinBrain : MonoBehaviour
 
         //Checks the distance between the enemy and the player, and if its close enough, it will attack
         distance = Vector3.Distance(transform.position, playerPos.position);
-        if (distance <= _AttackRange)
+        if (distance <= _AttackRange && !isAttacking)
         {
             StartCoroutine(Attack());
         }
@@ -51,27 +55,30 @@ public class EnemyEpsteinBrain : MonoBehaviour
     public void Chase()
     {
         //color.color = UnityEngine.Color.red;
+        gameObject.GetComponent<PlayAnimation>().PlayAnimationFunction("Run");
         agent.isStopped = false;
     }
 
     //Freezes the enemy in place as it attacks, allowing it to move again after a short cooldown.
+    [Header("Attack Box Settings")]
+    [SerializeField] private Vector3 _AttackBoxHalfExtents = new Vector3(0.5f, 0.5f, 0.5f);
+
     IEnumerator Attack()
     {
+        isAttacking = true;
         RaycastHit hit;
-
         agent.isStopped = true;
-        //color.color = UnityEngine.Color.yellow;
-        yield return new WaitForSeconds(_AttackCooldown / 2);
         gameObject.GetComponent<PlayAnimation>().PlayAnimationFunction("RandomAttack");
-        //color.color = UnityEngine.Color.orange;
-
-        hitPlayer = Physics.Raycast(transform.position, transform.forward, out hit, _AttackRange, _LayerMask);
-        if (hitPlayer)
+        gameObject.GetComponent<PlayAnimation>().PlayAnimationFunction("Run");
+        yield return new WaitForSeconds(_AttackDelay);
+        hitPlayer = Physics.BoxCast(transform.position, _AttackBoxHalfExtents, transform.forward, out hit, transform.rotation, _AttackRange, _LayerMask);
+        print(hit.transform.name);
+        if (hitPlayer && hit.transform == playerPos)
         {
-            print(" WAafsdfhsigdsiughsdjghdsjghjiWGRUGDIFUR^ST%RFUNJMESXHNUJDEFRHJUDEFRHNJUK");
+            hit.transform.gameObject.GetComponent<HealthManager>().UpdateHealth(_Damage);
         }
-        yield return new WaitForSeconds(_AttackCooldown / 2);
-
+        yield return new WaitForSeconds(_AttackCooldown);
+        isAttacking = false;
         Chase();
     }
 
@@ -119,5 +126,25 @@ public class EnemyEpsteinBrain : MonoBehaviour
                 StartCoroutine(Damage());
             }
         }
-    }  
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = UnityEngine.Color.red;
+
+        // Draw the starting box
+        Matrix4x4 oldMatrix = Gizmos.matrix;
+        Gizmos.matrix = Matrix4x4.TRS(transform.position, transform.rotation, Vector3.one);
+        Gizmos.DrawWireCube(Vector3.zero, _AttackBoxHalfExtents * 2f);
+        Gizmos.matrix = oldMatrix;
+
+        // Draw the end box (where the cast finishes)
+        Vector3 endPosition = transform.position + transform.forward * _AttackRange;
+        Gizmos.matrix = Matrix4x4.TRS(endPosition, transform.rotation, Vector3.one);
+        Gizmos.DrawWireCube(Vector3.zero, _AttackBoxHalfExtents * 2f);
+        Gizmos.matrix = oldMatrix;
+
+        // Draw a line connecting the two boxes to show the cast path
+        Gizmos.color = UnityEngine.Color.yellow;
+        Gizmos.DrawLine(transform.position, endPosition);
+    }
 }
