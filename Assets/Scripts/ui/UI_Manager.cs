@@ -1,16 +1,13 @@
 using UnityEngine;
+using TMPro;
 
 public class UI_Manager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+    public TextMeshPro _HPText;
+    public HealthManager _PlayerHealth;
+   
     void Update()
     {
-        
+        _HPText.text = _PlayerHealth.ToString();
     }
 }

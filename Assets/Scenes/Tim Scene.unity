@@ -1557,50 +1557,6 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 8aa5ecad24d973c4385aff534b7f4397, type: 2}
   m_BuildHeightMesh: 0
---- !u!1 &1474047525 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 474379191303060651, guid: 935f521a6e167f0469a11097755749c4, type: 3}
-  m_PrefabInstance: {fileID: 1356716597156849248}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1474047526
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1474047525}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 937e7b9eba2e1dc4dbf54dfb8b0acd03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HealthManager
-  _MaxHealth: 5
-  OnDeath:
-    m_PersistentCalls:
-      m_Calls: []
-  _CurrentHealth: 0
-  _DamageFlash: {fileID: 476952573}
---- !u!135 &1474047534
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1474047525}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.65240484
-  m_Center: {x: 0, y: 0.65240484, z: -0}
 --- !u!1 &1607238773
 GameObject:
   m_ObjectHideFlags: 0
@@ -2071,6 +2027,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 854285bc01b06fd43938c580bcdf5348, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  _HPText: {fileID: 0}
+  _PlayerHealth: {fileID: 0}
 --- !u!1001 &1356716597156849248
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2123,25 +2081,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4685047921921472284, guid: 935f521a6e167f0469a11097755749c4, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.5892
-      objectReference: {fileID: 0}
-    - target: {fileID: 4685047921921472284, guid: 935f521a6e167f0469a11097755749c4, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.5892
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 2179231052233546118, guid: 935f521a6e167f0469a11097755749c4, type: 3}
+    - target: {fileID: 7354394070583458470, guid: 935f521a6e167f0469a11097755749c4, type: 3}
+      propertyPath: _DamageFlash
+      value: 
+      objectReference: {fileID: 476952573}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 474379191303060651, guid: 935f521a6e167f0469a11097755749c4, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1474047526}
-    - targetCorrespondingSourceObject: {fileID: 474379191303060651, guid: 935f521a6e167f0469a11097755749c4, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1474047534}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 935f521a6e167f0469a11097755749c4, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
