@@ -811,9 +811,13 @@ MonoBehaviour:
   _AttackRange: 2
   _AttackCooldown: 2
   _DamageStun: 0.5
+  _AttackDelay: 0.65
+  _Damage: 1
   _LayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
+  Death: 0
+  _AttackBoxHalfExtents: {x: 0.5, y: 0.5, z: 0.5}
 --- !u!114 &5481654096842285103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -843,6 +847,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   _CurrentHealth: 5
+  _DamageFlash: {fileID: 0}
 --- !u!114 &1531569020492143735
 MonoBehaviour:
   m_ObjectHideFlags: 0

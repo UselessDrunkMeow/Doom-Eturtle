@@ -72,10 +72,10 @@ public class EnemyEpsteinBrain : MonoBehaviour
         agent.isStopped = false;
     }
 
-    //Freezes the enemy in place as it attacks, allowing it to move again after a short cooldown.
     [Header("Attack Box Settings")]
     [SerializeField] private Vector3 _AttackBoxHalfExtents = new Vector3(0.5f, 0.5f, 0.5f);
 
+    //Freezes the enemy in place as it attacks, allowing it to move again after a short cooldown.
     IEnumerator Attack()
     {
         isAttacking = true;
