@@ -20,11 +20,13 @@ public class EnemyEpsteinBrain : MonoBehaviour
     Transform playerPos;
     float distance;
     bool hitPlayer;
+    public bool Death = false;
 
     void OnEnable()
     {
         healthManager = GetComponent<HealthManager>();
         healthManager.enabled = true;
+        Death = false;
     }
     void Start()
     {
@@ -36,9 +38,20 @@ public class EnemyEpsteinBrain : MonoBehaviour
         agent.speed = _Speed;
     }
 
+    void GoToPlayer()
+    {
+        if(Death == false)
+        {
+            agent.SetDestination(playerPos.position);
+        }
+        else
+        {
+            agent.SetDestination(transform.position);
+        }
+    }
     void Update()
     {   //Set agent desitnation to the players possition every frame so it can chase it.
-        agent.SetDestination(playerPos.position);
+        GoToPlayer();
 
         //Checks the distance between the enemy and the player, and if its close enough, it will attack
         distance = Vector3.Distance(transform.position, playerPos.position);
@@ -78,6 +91,7 @@ public class EnemyEpsteinBrain : MonoBehaviour
     //Deletes the enemy after its HP reaches 0
     public void onDeath()
     {
+        Death = true;
         healthManager.enabled = false;
         StartCoroutine(DeathCoroutine());
     }
