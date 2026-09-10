@@ -97,34 +97,38 @@ public class EnemySpawnerScript : MonoBehaviour
     {
         Enemies.RemoveAll(enemy => enemy == null || !enemy.activeSelf);
     }
+    
     void Update()
+{
+    foreach (BoxCollider collider in colliders)
     {
-        foreach (BoxCollider collider in colliders)
-        {
-            float colliderDistance = Vector3.Distance(
-                Player.transform.position,
-                collider.transform.position
-            );
+        Vector3 colliderCenter =
+            collider.transform.TransformPoint(collider.center);
 
-            if (colliderDistance >= maxdistance)
-            {
-                if (!Spawnable.Contains(collider))
-                {
-                    Spawnable.Add(collider);
-                }
-            }
-            else
-            {
-                Spawnable.Remove(collider);
-            }
+        float distanceToCollider = Vector3.Distance(
+            Player.transform.position,
+            colliderCenter
+        );
+
+        if (distanceToCollider < maxdistance)
+        {
+            Spawnable.Remove(collider);
         }
-
-        CleanEnemyList();
-
-        if (Enemies.Count == 0 && Spawnable.Count > 0)
+        else
         {
-            Debug.Log("spawn wave");
-            SpawnWave();
+            if (!Spawnable.Contains(collider))
+            {
+                Spawnable.Add(collider);
+            }
         }
     }
+
+    CleanEnemyList();
+
+    if (Enemies.Count == 0 && Spawnable.Count > 0)
+    {
+        Debug.Log("spawn wave");
+        SpawnWave();
+    }
+}
 }
