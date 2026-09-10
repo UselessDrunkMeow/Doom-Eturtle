@@ -13,7 +13,9 @@ public class EnemySpawnerScript : MonoBehaviour
     public int SpawnCredit = 5;
     public int wavecount = 0;
     public List<GameObject> Enemies;
-
+    public List<BoxCollider> colliders = new List<BoxCollider>();
+    public List<Vector3> cornerOne = new List<Vector3>();
+    public List<Vector3> cornerTwo = new List<Vector3>();  
     public quaternion SpawnRotation = new quaternion(0, 0, 0, 0);
     public Vector3 corner1;
     public Vector3 corner2;
@@ -23,16 +25,35 @@ public class EnemySpawnerScript : MonoBehaviour
     
     void Start()
     {
-        Vector3 halfSize = boxCollider.size * 0.5f;
-        corner1 = boxCollider.transform.TransformPoint(boxCollider.center + new Vector3(-halfSize.x, -halfSize.y, -halfSize.z));
-        corner2 = boxCollider.transform.TransformPoint(boxCollider.center + new Vector3(halfSize.x, -halfSize.y, halfSize.z));
+        colliders.AddRange(Object.FindObjectsByType<BoxCollider>());
+
+        foreach (BoxCollider collider in colliders)
+        {
+            Vector3 halfSize = collider.size * 0.5f;
+
+            Vector3 corner1 = collider.transform.TransformPoint(
+                collider.center + new Vector3(-halfSize.x, -halfSize.y, -halfSize.z)
+            );
+
+            Vector3 corner2 = collider.transform.TransformPoint(
+                collider.center + new Vector3(halfSize.x, -halfSize.y, halfSize.z)
+            );
+
+            cornerOne.Add(corner1);
+            cornerTwo.Add(corner2);
+        }
     }
     void SpawnWave()
     {
         while(SpawnCredit != 0)
         {
+            int Col = UnityEngine.Random.Range(0, colliders.Count);
             GameObject PooledEnemy = ObjectPool.SharedInstance.GetPooledObject(EnemyToSpawn); 
-            Vector3 position = new Vector3(UnityEngine.Random.Range(corner1.x, corner2.x), 0, UnityEngine.Random.Range(corner1.z, corner2.z));
+            Vector3 position = new Vector3(
+                UnityEngine.Random.Range(cornerOne[Col].x, cornerTwo[Col].x),
+                0,
+                UnityEngine.Random.Range(cornerOne[Col].z, cornerTwo[Col].z)
+            );
             if (PooledEnemy != null) {
                 PooledEnemy.transform.position = position;
                 PooledEnemy.SetActive(true);
