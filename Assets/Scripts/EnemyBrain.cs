@@ -28,8 +28,7 @@ public class EnemyBrain : MonoBehaviour
     void Start()
     {
         playerPos = FindAnyObjectByType<PlayerShoot>().transform;
-        agent = GetComponent<NavMeshAgent>();
-        //color = GetComponentInChildren<MeshRenderer>().material;
+        agent = GetComponent<NavMeshAgent>();   
         healthManager = GetComponent<HealthManager>();
         agent.speed = _Speed;
     }
@@ -72,16 +71,22 @@ public class EnemyBrain : MonoBehaviour
         isAttacking = true;
         RaycastHit hit;
         agent.isStopped = true;
+
         gameObject.GetComponent<PlayAnimation>().PlayAnimationFunction("Attack");
-        gameObject.GetComponent<PlayAnimation>().PlayAnimationFunction("Run");
+        gameObject.GetComponent<PlayAnimation>().anim.SetBool("IsRunning", false);
+
         yield return new WaitForSeconds(_AttackDelay);
+
         hitPlayer = Physics.BoxCast(transform.position, _AttackBoxHalfExtents, transform.forward, out hit, transform.rotation, _AttackRange, _LayerMask);
         print(hit.transform.name);
+
         if (hitPlayer && hit.transform == playerPos)
         {
             hit.transform.gameObject.GetComponent<HealthManager>().UpdateHealth(_Damage);
         }
+
         yield return new WaitForSeconds(_AttackCooldown);
+
         isAttacking = false;
         Chase();
     }

@@ -853,30 +853,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5183891637495744154, guid: a4e7aadf3e4d14eac8c46514e4807470, type: 3}
-      propertyPath: _Damage
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5183891637495744154, guid: a4e7aadf3e4d14eac8c46514e4807470, type: 3}
-      propertyPath: _AttackDelay
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 5183891637495744154, guid: a4e7aadf3e4d14eac8c46514e4807470, type: 3}
-      propertyPath: _LayerMask.m_Bits
-      value: 64
-      objectReference: {fileID: 0}
-    - target: {fileID: 5183891637495744154, guid: a4e7aadf3e4d14eac8c46514e4807470, type: 3}
-      propertyPath: _AttackBoxHalfExtents.x
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 5183891637495744154, guid: a4e7aadf3e4d14eac8c46514e4807470, type: 3}
-      propertyPath: _AttackBoxHalfExtents.y
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 5183891637495744154, guid: a4e7aadf3e4d14eac8c46514e4807470, type: 3}
-      propertyPath: _AttackBoxHalfExtents.z
-      value: 0.25
-      objectReference: {fileID: 0}
     - target: {fileID: 5849746235925260095, guid: a4e7aadf3e4d14eac8c46514e4807470, type: 3}
       propertyPath: m_Name
       value: JheffreighyEnemy
