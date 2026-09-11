@@ -53981,6 +53981,10 @@ PrefabInstance:
       propertyPath: SpawnCredit
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 6188095959552030604, guid: 3d24b99291244450bbc18e9c84e58ec0, type: 3}
+      propertyPath: Spawnable.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6943439933181817210, guid: 3d24b99291244450bbc18e9c84e58ec0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

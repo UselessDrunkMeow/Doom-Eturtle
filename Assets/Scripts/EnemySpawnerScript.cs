@@ -11,11 +11,12 @@ public class EnemySpawnerScript : MonoBehaviour
     public int enemyTwoCost = 20;
     public BoxCollider boxCollider;
     public int SpawnCredit = 5;
+    public int InitialSpawnCredit = 5;
     public int wavecount = 0;
     public List<GameObject> Enemies;
     public List<BoxCollider> colliders = new List<BoxCollider>();
     public List<Vector3> cornerOne = new List<Vector3>();
-    public List<Vector3> cornerTwo = new List<Vector3>();  
+    public List<Vector3> cornerTwo = new List<Vector3>();
     public quaternion SpawnRotation = new quaternion(0, 0, 0, 0);
     public Vector3 corner1;
     public Vector3 corner2;
@@ -23,7 +24,7 @@ public class EnemySpawnerScript : MonoBehaviour
     public float maxdistance;
     public GameObject Player;
     public List<BoxCollider> Spawnable;
-    
+
     void Start()
     {
         colliders.AddRange(GetComponents<BoxCollider>());
@@ -43,6 +44,7 @@ public class EnemySpawnerScript : MonoBehaviour
             cornerOne.Add(corner1);
             cornerTwo.Add(corner2);
         }
+        InitialSpawnCredit = SpawnCredit;
     }
     void SpawnWave()
     {
@@ -55,6 +57,8 @@ public class EnemySpawnerScript : MonoBehaviour
             }
 
             int spawnableIndex = UnityEngine.Random.Range(0, Spawnable.Count);
+
+            WhatEnemyToSpawn();
 
             BoxCollider selectedCollider = Spawnable[spawnableIndex];
 
@@ -91,44 +95,73 @@ public class EnemySpawnerScript : MonoBehaviour
         }
 
         wavecount++;
-        SpawnCredit = wavecount + 5;
+        SpawnCredit = InitialSpawnCredit + wavecount + 3;
     }
+
+    void WhatEnemyToSpawn()
+    {
+        if (SpawnCredit >= enemyTwoCost)
+        {
+            int EnemyType = UnityEngine.Random.Range(0, 2);
+            print(EnemyType);
+            switch (EnemyType)
+            {
+                case 0:
+                    EnemyToSpawn = "Jheffreighy";
+                    print("Jheffreighy IN THE CASE SPAWNERD");
+                    SpawnCredit = SpawnCredit - enemyOneCost;
+                    break;
+                case 1:
+                    EnemyToSpawn = "Æpfft-steyghnn";
+                    print("Æpfft-steyghnn SPAWNERD");
+                    SpawnCredit = SpawnCredit - enemyTwoCost;
+                    break;
+            }
+        }
+
+        else if (SpawnCredit <= enemyTwoCost)
+        {
+            EnemyToSpawn = "Jheffreighy";
+            print("Jheffreighy SPAWNERD");
+        }
+    }
+
     void CleanEnemyList()
     {
         Enemies.RemoveAll(enemy => enemy == null || !enemy.activeSelf);
     }
-    
+
     void Update()
-{
-    foreach (BoxCollider collider in colliders)
     {
-        Vector3 colliderCenter =
-            collider.transform.TransformPoint(collider.center);
-
-        float distanceToCollider = Vector3.Distance(
-            Player.transform.position,
-            colliderCenter
-        );
-
-        if (distanceToCollider < maxdistance)
+        foreach (BoxCollider collider in colliders)
         {
-            Spawnable.Remove(collider);
-        }
-        else
-        {
-            if (!Spawnable.Contains(collider))
+            Vector3 colliderCenter =
+                collider.transform.TransformPoint(collider.center);
+
+            float distanceToCollider = Vector3.Distance(
+                Player.transform.position,
+                colliderCenter
+            );
+
+            if (distanceToCollider < maxdistance)
             {
-                Spawnable.Add(collider);
+                Spawnable.Remove(collider);
+            }
+            else
+            {
+                if (!Spawnable.Contains(collider))
+                {
+                    Spawnable.Add(collider);
+                }
             }
         }
-    }
 
-    CleanEnemyList();
+        CleanEnemyList();
 
-    if (Enemies.Count == 0 && Spawnable.Count > 0)
-    {
-        Debug.Log("spawn wave");
-        SpawnWave();
+        if (Enemies.Count == 0 && Spawnable.Count > 0)
+        {
+            Debug.Log("spawn wave");
+            SpawnWave();
+        }
     }
-}
 }

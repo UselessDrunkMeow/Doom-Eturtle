@@ -16,6 +16,7 @@ public class EnemyEpsteinBrain : MonoBehaviour
     public float _AttackDelay;
     public int _Damage;
     public LayerMask _LayerMask;
+    public bool _Death = false;
 
     HealthManager healthManager;
     Material color;
@@ -24,13 +25,12 @@ public class EnemyEpsteinBrain : MonoBehaviour
     float distance;
     bool hitPlayer;
     bool isAttacking;
-    public bool Death = false;
 
     void OnEnable()
     {
         healthManager = GetComponent<HealthManager>();
         healthManager.enabled = true;
-        Death = false;
+        _Death = false;
     }
     void Start()
     {
@@ -44,7 +44,7 @@ public class EnemyEpsteinBrain : MonoBehaviour
 
     void GoToPlayer()
     {
-        if(Death == false)
+        if(_Death == false)
         {
             agent.SetDestination(playerPos.position);
         }
@@ -97,7 +97,7 @@ public class EnemyEpsteinBrain : MonoBehaviour
     //Deletes the enemy after its HP reaches 0
     public void onDeath()
     {
-        Death = true;
+        _Death = true;
         healthManager.enabled = false;
         StartCoroutine(DeathCoroutine());
     }

@@ -24,7 +24,12 @@ public class EnemyBrain : MonoBehaviour
     float distance;
     bool hitPlayer;
     bool isAttacking;
-
+    void OnEnable()
+    {
+        healthManager = GetComponent<HealthManager>();
+        healthManager.enabled = true;
+        _Death = false;
+    }
     void Start()
     {
         playerPos = FindAnyObjectByType<PlayerShoot>().transform;
@@ -93,7 +98,8 @@ public class EnemyBrain : MonoBehaviour
     //Deletes the enemy after its HP reaches 0
     public void onDeath()
     {
-        healthManager = null;
+        _Death = true;
+        healthManager.enabled = false;
         StartCoroutine(DeathCoroutine());
     }
     private IEnumerator DeathCoroutine()

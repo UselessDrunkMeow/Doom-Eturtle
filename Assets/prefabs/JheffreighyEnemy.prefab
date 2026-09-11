@@ -203,6 +203,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4285849457783960535}
+  - component: {fileID: 6769383740017743772}
   m_Layer: 0
   m_Name: Bone001
   m_TagString: Untagged
@@ -228,6 +229,27 @@ Transform:
   - {fileID: 4285849457783960541}
   m_Father: {fileID: 4285849457783960537}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &6769383740017743772
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4285849457784057847}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.65
+  m_Center: {x: -0.13, y: -0.08, z: 0}
 --- !u!1 &4285849457784057849
 GameObject:
   m_ObjectHideFlags: 0
@@ -368,9 +390,9 @@ GameObject:
   - component: {fileID: 5183891637495744154}
   - component: {fileID: 5481654096842285103}
   - component: {fileID: 8442319425142126637}
-  - component: {fileID: 8033652402588620067}
   - component: {fileID: 1692468744525290137}
   - component: {fileID: 7778855348862646706}
+  - component: {fileID: 7138516212978265018}
   m_Layer: 0
   m_Name: JheffreighyEnemy
   m_TagString: Untagged
@@ -428,7 +450,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcfc193b016c7c84ab88ced495a89486, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  _Speed: 3.5
+  _Speed: 5
   _AttackRange: 2
   _AttackCooldown: 2
   _DamageStun: 0.5
@@ -438,7 +460,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   _Death: 0
-  _AttackBoxHalfExtents: {x: 0.25, y: 0.25, z: 0.25}
+  _AttackBoxHalfExtents: {x: 0.5, y: 0.5, z: 0.5}
 --- !u!114 &5481654096842285103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -451,7 +473,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 937e7b9eba2e1dc4dbf54dfb8b0acd03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  _MaxHealth: 5
+  _MaxHealth: 3
   OnDeath:
     m_PersistentCalls:
       m_Calls:
@@ -467,7 +489,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  _CurrentHealth: 5
+  _CurrentHealth: 3
   _DamageFlash: {fileID: 0}
 --- !u!114 &8442319425142126637
 MonoBehaviour:
@@ -482,27 +504,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayAnimation
   anim: {fileID: 1692468744525290137}
---- !u!135 &8033652402588620067
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5849746235925260095}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 1, z: 0}
 --- !u!95 &1692468744525290137
 Animator:
   serializedVersion: 7
@@ -546,3 +547,26 @@ Animation:
   m_AnimatePhysics: 0
   m_UpdateMode: 0
   m_CullingType: 0
+--- !u!136 &7138516212978265018
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5849746235925260095}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 1.553546
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.0769703, z: 0}

@@ -807,16 +807,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d16e5d8fcdab341979764d9eaf2b1c36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyEpsteinBrain
-  _Speed: 4
+  _Speed: 3.5
   _AttackRange: 2.5
   _AttackCooldown: 2
   _DamageStun: 0.5
   _AttackDelay: 0.65
-  _Damage: 1
+  _Damage: 2
   _LayerMask:
     serializedVersion: 2
     m_Bits: 64
-  Death: 0
+  _Death: 0
   _AttackBoxHalfExtents: {x: 1, y: 1, z: 0.5}
 --- !u!114 &5481654096842285103
 MonoBehaviour:
@@ -830,7 +830,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 937e7b9eba2e1dc4dbf54dfb8b0acd03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  _MaxHealth: 5
+  _MaxHealth: 15
   OnDeath:
     m_PersistentCalls:
       m_Calls:
