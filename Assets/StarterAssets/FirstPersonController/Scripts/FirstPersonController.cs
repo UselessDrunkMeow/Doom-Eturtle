@@ -53,6 +53,9 @@ namespace StarterAssets
         [Tooltip("Refrence to the Pause Menu so we can freeze the player while its paused")]
         PauseMenuScript pauseMenuScript;
 
+        [Tooltip("Refrence to the UI Menager so we can freeze the player while its paused")]
+        UI_Manager UIManager;
+
         // cinemachine
         private float _cinemachineTargetPitch;
 
@@ -112,7 +115,7 @@ namespace StarterAssets
             _fallTimeoutDelta = FallTimeout;
 
             pauseMenuScript = FindAnyObjectByType<PauseMenuScript>();
-
+            UIManager = FindAnyObjectByType<UI_Manager>();
         }
 
         private void Update()
@@ -124,7 +127,7 @@ namespace StarterAssets
 
         private void LateUpdate()
         {
-            if (!pauseMenuScript.isShowing)
+            if (!pauseMenuScript.isShowing || !UIManager._GameOver)
             {
                 CameraRotation();
             }

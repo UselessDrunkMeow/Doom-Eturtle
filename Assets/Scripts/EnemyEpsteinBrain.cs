@@ -84,8 +84,7 @@ public class EnemyEpsteinBrain : MonoBehaviour
         gameObject.GetComponent<PlayAnimation>().PlayAnimationFunction("RandomAttack");
         gameObject.GetComponent<PlayAnimation>().PlayAnimationFunction("Run");
         yield return new WaitForSeconds(_AttackDelay);
-        hitPlayer = Physics.BoxCast(transform.position, _AttackBoxHalfExtents, transform.forward, out hit, transform.rotation, _AttackRange, _LayerMask);
-        print(hit.transform.name);
+        hitPlayer = Physics.BoxCast(transform.position, _AttackBoxHalfExtents, transform.forward, out hit, transform.rotation, _AttackRange, _LayerMask);       
         if (hitPlayer && hit.transform == playerPos)
         {
             hit.transform.gameObject.GetComponent<HealthManager>().UpdateHealth(_Damage);
@@ -129,18 +128,17 @@ public class EnemyEpsteinBrain : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other != null)
-        {
-            print(other.transform.name);
-            if (other.transform.tag == "PlayerBullet")
+        if (collision != null)
+        {        
+            if (collision.transform.tag == "PlayerBullet")
             {
-                print("HIT!" + other.transform.name);
+                print("HIT!" + collision.transform.name);
                 StartCoroutine(Damage());
             }
         }
-    }
+    }    
     private void OnDrawGizmos()
     {
         Gizmos.color = UnityEngine.Color.red;

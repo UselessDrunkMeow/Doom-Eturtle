@@ -428,7 +428,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcfc193b016c7c84ab88ced495a89486, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  _Speed: 2
+  _Speed: 3.5
   _AttackRange: 2
   _AttackCooldown: 2
   _DamageStun: 0.5
@@ -437,7 +437,7 @@ MonoBehaviour:
   _LayerMask:
     serializedVersion: 2
     m_Bits: 64
-  Death: 0
+  _Death: 0
   _AttackBoxHalfExtents: {x: 0.25, y: 0.25, z: 0.25}
 --- !u!114 &5481654096842285103
 MonoBehaviour:
@@ -497,11 +497,11 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.3
+  m_Radius: 0.5
   m_Center: {x: 0, y: 1, z: 0}
 --- !u!95 &1692468744525290137
 Animator:

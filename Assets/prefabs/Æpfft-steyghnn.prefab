@@ -784,7 +784,7 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 3.5
-  m_Acceleration: 8
+  m_Acceleration: 800
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0
@@ -807,8 +807,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d16e5d8fcdab341979764d9eaf2b1c36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyEpsteinBrain
-  _Speed: 2
-  _AttackRange: 2
+  _Speed: 4
+  _AttackRange: 2.5
   _AttackCooldown: 2
   _DamageStun: 0.5
   _AttackDelay: 0.65
@@ -817,7 +817,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   Death: 0
-  _AttackBoxHalfExtents: {x: 0.5, y: 0.5, z: 0.5}
+  _AttackBoxHalfExtents: {x: 1, y: 1, z: 0.5}
 --- !u!114 &5481654096842285103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -876,14 +876,14 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.7
-  m_Height: 2.1425028
+  m_Height: 2.5923474
   m_Direction: 1
-  m_Center: {x: 0, y: 0.99067736, z: 0}
+  m_Center: {x: 0, y: 1.1636246, z: 0}
 --- !u!95 &2574327104762370213
 Animator:
   serializedVersion: 7

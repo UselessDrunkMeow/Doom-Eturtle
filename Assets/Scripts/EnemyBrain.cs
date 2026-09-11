@@ -15,6 +15,7 @@ public class EnemyBrain : MonoBehaviour
     public float _AttackDelay;
     public int _Damage;
     public LayerMask _LayerMask;
+    public bool _Death = false;
 
     HealthManager healthManager;
     Material color;
@@ -23,7 +24,6 @@ public class EnemyBrain : MonoBehaviour
     float distance;
     bool hitPlayer;
     bool isAttacking;
-    public bool Death = false;
 
     void Start()
     {
@@ -34,7 +34,7 @@ public class EnemyBrain : MonoBehaviour
     }
     void GoToPlayer()
     {
-        if (Death == false)
+        if (_Death == false)
         {
             agent.SetDestination(playerPos.position);
         }
@@ -78,7 +78,6 @@ public class EnemyBrain : MonoBehaviour
         yield return new WaitForSeconds(_AttackDelay);
 
         hitPlayer = Physics.BoxCast(transform.position, _AttackBoxHalfExtents, transform.forward, out hit, transform.rotation, _AttackRange, _LayerMask);
-        print(hit.transform.name);
 
         if (hitPlayer && hit.transform == playerPos)
         {
@@ -124,19 +123,18 @@ public class EnemyBrain : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other != null)
+        if (collision != null)
         {
-            print(other.transform.name);
-            if (other.transform.tag == "PlayerBullet")
+            if (collision.transform.tag == "PlayerBullet")
             {
-                print("HIT!" + other.transform.name);
+                print("HIT!" + collision.transform.name);
                 StartCoroutine(Damage());
             }
         }
     }
-    private void OnDrawGizmos()
+    private void OnDrawGizmos() //Made with AI cuz IDK how ANY of this works XD
     {
         Gizmos.color = UnityEngine.Color.red;
 
