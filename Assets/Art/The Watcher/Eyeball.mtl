@@ -1,0 +1,52 @@
+# Blender 3.3.0 MTL File: 'Eyeball.blend'
+# www.blender.org
+
+newmtl Claw_Material
+Ns 784.029724
+Ka 0.963636 0.963636 0.963636
+Ks 0.307273 0.307273 0.307273
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 3
+map_Kd Wing Bones Texture.png
+
+newmtl Eyeball_Material
+Ns 883.599976
+Ka 1.000000 1.000000 1.000000
+Ks 0.954545 0.954545 0.954545
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd Eyeball.png
+
+newmtl Pupil_Material
+Ns 1000.000000
+Ka 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd Pupil Texture.png
+
+newmtl Wing_Bones_Material
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd Wing Bones Texture.png
+
+newmtl Wing_Material
+Ns 102.400040
+Ka 1.000000 1.000000 1.000000
+Ks 0.143636 0.143636 0.143636
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd Wing Texture.png
