@@ -17,11 +17,19 @@ public enum BossState
 
 public class BossScript : MonoBehaviour
 {
+    public GameObject Crown;
+    public  GameObject LaserPoint;
     public float SpawnCount;
     public BossState _BossState;
     public GameObject _Player;
     public float _LookSpeed;
     public float SpawnRange;
+    private Boolean MoveCrownToPlayer;
+    private Boolean MoveCrownToBoss;
+    Vector3 TempScale;
+    Transform TempParent;
+    Vector3 TempPos;
+    Vector3 GrowScale = new Vector3(10, 10 ,10);
     
     [Tooltip("Points the boss can teleport to")]
     public Transform[] _TeleportPoints;
@@ -36,6 +44,10 @@ public class BossScript : MonoBehaviour
     {
         healthManager = GetComponent<HealthManager>();
         ChooseAction();
+    }
+    public void OnEnable()
+    {
+        LaserPoint.SetActive(false);
     }
 
     //sellect a random action to take, like one of its ttacks, or summoning of extra enemies, teleporting etc
@@ -100,6 +112,22 @@ public class BossScript : MonoBehaviour
     }
     private void Update()
     {
+        if(MoveCrownToPlayer == true)
+        {
+            Crown.transform.position = Vector3.Lerp(TempPos, _Player.transform.position, 1 * Time.deltaTime);
+            Crown.transform.localScale = Vector3.Lerp(TempScale, GrowScale, 1 * Time.deltaTime);
+        }
+        if(MoveCrownToBoss == true)
+        {
+            Crown.transform.position = Vector3.Lerp(TempPos, gameObject.transform.position, 1 * Time.deltaTime);
+            Crown.transform.localScale = Vector3.Lerp(GrowScale, TempScale, 1 * Time.deltaTime);
+            if(Crown.transform.position == gameObject.transform.position)
+            {
+                Debug.LogError("DoneMoving");
+                Crown.transform.parent = TempParent;
+                MoveCrownToBoss = false;
+            }
+        }
         LookAtPlayer();
     }
 
@@ -125,12 +153,26 @@ public class BossScript : MonoBehaviour
     }
     IEnumerator Attack1()
     {
+        LaserPoint.SetActive(true);
+        yield return new WaitForSeconds(6);
+        LaserPoint.SetActive(false);
         yield return new WaitForSeconds(1);
         StartCoroutine(Idle());
     }
 
     IEnumerator Attack2()
     {
+        TempScale = Crown.transform.localScale;
+        TempParent = Crown.transform.parent;
+        Debug.Log(TempParent);
+        Debug.Log(Crown.transform.parent);
+        TempPos = Crown.transform.position;
+        MoveCrownToPlayer = true;
+        Crown.transform.parent = null;
+        yield return new WaitForSeconds(5);
+        MoveCrownToPlayer = false;
+        TempPos = Crown.transform.position;
+        MoveCrownToBoss = true;
         yield return new WaitForSeconds(1);
         StartCoroutine(Idle());
     }
@@ -201,7 +243,6 @@ public class BossScript : MonoBehaviour
         if (healthManager != null)
         {
             healthManager._CurrentHealth--;            
-           
         }
         else
         {
