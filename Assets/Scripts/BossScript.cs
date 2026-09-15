@@ -17,6 +17,7 @@ public enum BossState
 
 public class BossScript : MonoBehaviour
 {
+    public  GameObject LaserPoint;
     public float SpawnCount;
     public BossState _BossState;
     public GameObject _Player;
@@ -36,6 +37,10 @@ public class BossScript : MonoBehaviour
     {
         healthManager = GetComponent<HealthManager>();
         ChooseAction();
+    }
+    public void OnEnable()
+    {
+        LaserPoint.SetActive(false);
     }
 
     //sellect a random action to take, like one of its ttacks, or summoning of extra enemies, teleporting etc
@@ -125,6 +130,9 @@ public class BossScript : MonoBehaviour
     }
     IEnumerator Attack1()
     {
+        LaserPoint.SetActive(true);
+        yield return new WaitForSeconds(6);
+        LaserPoint.SetActive(false);
         yield return new WaitForSeconds(1);
         StartCoroutine(Idle());
     }
@@ -201,7 +209,6 @@ public class BossScript : MonoBehaviour
         if (healthManager != null)
         {
             healthManager._CurrentHealth--;            
-           
         }
         else
         {
