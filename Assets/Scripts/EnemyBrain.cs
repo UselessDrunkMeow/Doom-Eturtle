@@ -100,7 +100,10 @@ public class EnemyBrain : MonoBehaviour
     {
         _Death = true;
         healthManager.enabled = false;
+        Vector3 DeathPos = gameObject.transform.position;
+        EffectSpawner.SpawnEffect(DeathPos, "EnergyBlast");
         StartCoroutine(DeathCoroutine());
+
     }
     private IEnumerator DeathCoroutine()
     {
