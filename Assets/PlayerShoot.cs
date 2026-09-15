@@ -5,17 +5,25 @@ public class PlayerShoot : MonoBehaviour
     public Transform _Firepoint;
     public Transform _CameraPoint;
     public GameObject _Bullet;
+
     public float _FireSpeed;
+    public float _FireRate;
+
     public LayerMask _Mask;
     public GameObject testsphere;
+
     GameObject spawned_Bullet;
     Rigidbody _bullet_RB;
     Vector3 hit_pos;
 
+    public float time;
+
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        time = time + Time.deltaTime;
+        if (Input.GetMouseButton(0)&& _FireRate <= time)
         {
+            time = 0;
             GetHitPosition();
         }
 
