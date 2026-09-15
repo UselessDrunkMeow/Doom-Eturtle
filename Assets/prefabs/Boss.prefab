@@ -145,6 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7f98bf2278868c4f8a47f0ef200d1b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  LaserPoint: {fileID: 0}
   SpawnCount: 0
   _BossState: 0
   _Player: {fileID: 0}
@@ -877,6 +878,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5127026760504212780}
     m_Modifications:
+    - target: {fileID: 1252675956447301706, guid: 3441838d6aa164bbbb2637892d3f0de1, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5196750051408796096, guid: 3441838d6aa164bbbb2637892d3f0de1, type: 3}
       propertyPath: m_Name
       value: LASER
