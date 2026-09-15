@@ -5,7 +5,7 @@ using UnityEngine.Pool;
 public class EffectSpawner : MonoBehaviour
 {
     private GameObject PooledEffect;
-    public void SpawnEffect(Vector3 transform, String EffectName)
+    public static void SpawnEffect(Vector3 transform, String EffectName)
     {
             GameObject PooledEffect =
                 ObjectPool.SharedInstance.GetPooledObject(EffectName);
@@ -15,18 +15,17 @@ public class EffectSpawner : MonoBehaviour
                     PooledEffect.transform.position = transform;
                     PooledEffect.SetActive(true);
                     PooledEffect.GetComponent<ParticleSystem>().Play();
+
+                    if (PooledEffect.TryGetComponent<ParticleSystem>(out var ps))
+            {
+                ps.Play();
+            }
                 }
+                
             else
                 {
                     Debug.LogWarning("Object Pool is empty! Expanding or waiting...");
                 }
 
-    }
-    void Update()
-    {
-        if(PooledEffect.GetComponent<ParticleSystem>().isStopped)
-        {
-            PooledEffect.SetActive(false);
-        }
     }
 }
