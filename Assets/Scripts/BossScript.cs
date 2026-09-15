@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UIElements;
 //States the boss can be in, Set the state via code to execute the corresponding functions
 //More states can be added if needed, and the names should be changed to describe the attack
 public enum BossState
@@ -11,14 +11,17 @@ public enum BossState
     Attack1,
     Attack2,
     Attack3,
+    Summon,
     Teleporting
 }
 
 public class BossScript : MonoBehaviour
 {
+    public float SpawnCount;
     public BossState _BossState;
     public GameObject _Player;
     public float _LookSpeed;
+    public float SpawnRange;
     
     [Tooltip("Points the boss can teleport to")]
     public Transform[] _TeleportPoints;
@@ -41,7 +44,7 @@ public class BossScript : MonoBehaviour
     public void ChooseAction()
     {
         print("uuuuhm halloooo???");
-        randomNumber = UnityEngine.Random.Range(0, 10);
+        randomNumber = UnityEngine.Random.Range(0, 13);
         switch (randomNumber)
         {
             case >= 0 and < 3:
@@ -62,6 +65,10 @@ public class BossScript : MonoBehaviour
             case >= 8 and < 10:
                 print(_BossState);
                 _BossState = BossState.Teleporting;
+                break;
+            case >= 10 and < 13:
+                print(_BossState);
+                _BossState = BossState.Summon;
                 break;
         }
 
@@ -85,6 +92,9 @@ public class BossScript : MonoBehaviour
 
             case BossState.Teleporting:
                 StartCoroutine(Teleporting());
+                break;
+            case BossState.Summon:
+                StartCoroutine(Summon());
                 break;
         }
     }
@@ -145,6 +155,43 @@ public class BossScript : MonoBehaviour
 
         Teleport();
         yield return new WaitForSeconds(_TeleportDelay);
+        StartCoroutine(Idle());
+    }
+    IEnumerator Summon()
+    {
+        SpawnCount = 0;
+        while(SpawnCount != 5)
+        {
+            GameObject PooledEnemy =
+                ObjectPool.SharedInstance.GetPooledObject("BOSSMINI");
+        
+            if (PooledEnemy != null)
+                {
+                    var BossLocation = transform.position;
+                    Vector3 position = new Vector3(
+                        UnityEngine.Random.Range(
+                            BossLocation.x - SpawnRange,
+                            BossLocation.x + SpawnRange
+                        ),
+                        0,
+                        UnityEngine.Random.Range(
+                            BossLocation.z - SpawnRange,
+                            BossLocation.z + SpawnRange
+                        )
+                    );
+
+                    PooledEnemy.transform.position = position;
+                    PooledEnemy.SetActive(true);
+                }
+            else
+                {
+                    Debug.LogWarning("Object Pool is empty! Expanding or waiting...");
+                }
+                SpawnCount++;
+            }
+        
+        
+        yield return new WaitForSeconds(1);
         StartCoroutine(Idle());
     }
 

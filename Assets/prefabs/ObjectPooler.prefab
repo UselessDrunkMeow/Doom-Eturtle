@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8780513912498472425}
   - component: {fileID: 4964017388767504654}
+  - component: {fileID: 511533526678621990}
   m_Layer: 0
   m_Name: ObjectPooler
   m_TagString: Untagged
@@ -44,4 +45,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 761097d3a7fd54a3fb6b7229d3a4920a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjectPool
-  itemsToPool: []
+  itemsToPool:
+  - poolTag: Jheffreighy
+    objectToPool: {fileID: 5849746235925260095, guid: a4e7aadf3e4d14eac8c46514e4807470, type: 3}
+    amountToPool: 200
+    shouldExpand: 1
+    pooledObjects: []
+  - poolTag: Bullet
+    objectToPool: {fileID: 2022262299169323760, guid: f085767607f094d47919582c2ed412aa, type: 3}
+    amountToPool: 30
+    shouldExpand: 1
+    pooledObjects: []
+  - poolTag: "\xC6pfft-steyghnn"
+    objectToPool: {fileID: 5849746235925260095, guid: 23f12345c64774be38d418920ee252bd, type: 3}
+    amountToPool: 200
+    shouldExpand: 1
+    pooledObjects: []
+  - poolTag: BOSS
+    objectToPool: {fileID: 9098698667131019743, guid: 1f0152f294fd0c849bf8bc724bdb5673, type: 3}
+    amountToPool: 1
+    shouldExpand: 0
+    pooledObjects: []
+  - poolTag: BOSSMINI
+    objectToPool: {fileID: 5849746235925260095, guid: b0385969bd3614956be0262a48dd5bb6, type: 3}
+    amountToPool: 5
+    shouldExpand: 1
+    pooledObjects: []
+  - poolTag: LASER
+    objectToPool: {fileID: 5196750051408796096, guid: 3441838d6aa164bbbb2637892d3f0de1, type: 3}
+    amountToPool: 20
+    shouldExpand: 1
+    pooledObjects: []
+--- !u!114 &511533526678621990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7579207774110924825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 317756709562e40deb6c4ebac6899862, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EffectSpawner
