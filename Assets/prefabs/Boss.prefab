@@ -34,6 +34,37 @@ Transform:
   - {fileID: 683221177073365865}
   m_Father: {fileID: 2488954678222613238}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1411167197118714300
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4574752836097074509}
+  m_Layer: 0
+  m_Name: Firepoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4574752836097074509
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1411167197118714300}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0.0000029504295}
+  m_LocalPosition: {x: 0, y: 0.662, z: -0.521}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7472856297546997916}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &3682429034070074120
 GameObject:
   m_ObjectHideFlags: 0
@@ -132,6 +163,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4146514920654986255}
+  - {fileID: 4574752836097074509}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7410225097785940395
@@ -165,8 +197,11 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   _TeleportDelay: 1.5
-  SpawnCount: 0
-  SpawnRange: 0
+  _SpawnRange: 5
+  _AmountToSpawn: 7
+  _Firepoint: {fileID: 4574752836097074509}
+  _LazerSpeed: 25
+  _TimeBetweenShots: 0.5
 --- !u!114 &2219107642941495862
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,7 +237,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3

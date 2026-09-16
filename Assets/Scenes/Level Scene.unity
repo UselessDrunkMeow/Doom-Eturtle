@@ -8812,7 +8812,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4964017388767504654, guid: 463259875b4554093992b63e54bf12d3, type: 3}
       propertyPath: itemsToPool.Array.size
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4964017388767504654, guid: 463259875b4554093992b63e54bf12d3, type: 3}
       propertyPath: itemsToPool.Array.data[0].poolTag
@@ -8845,6 +8845,10 @@ PrefabInstance:
     - target: {fileID: 4964017388767504654, guid: 463259875b4554093992b63e54bf12d3, type: 3}
       propertyPath: itemsToPool.Array.data[7].poolTag
       value: Teleport
+      objectReference: {fileID: 0}
+    - target: {fileID: 4964017388767504654, guid: 463259875b4554093992b63e54bf12d3, type: 3}
+      propertyPath: itemsToPool.Array.data[8].poolTag
+      value: SmallLazer
       objectReference: {fileID: 0}
     - target: {fileID: 4964017388767504654, guid: 463259875b4554093992b63e54bf12d3, type: 3}
       propertyPath: itemsToPool.Array.data[0].amountToPool
@@ -8940,6 +8944,18 @@ PrefabInstance:
       objectReference: {fileID: 5713051546647414994, guid: a7cf5463060fcc4479e1d4a61e1217e4, type: 3}
     - target: {fileID: 4964017388767504654, guid: 463259875b4554093992b63e54bf12d3, type: 3}
       propertyPath: itemsToPool.Array.data[7].shouldExpand
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4964017388767504654, guid: 463259875b4554093992b63e54bf12d3, type: 3}
+      propertyPath: itemsToPool.Array.data[8].amountToPool
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4964017388767504654, guid: 463259875b4554093992b63e54bf12d3, type: 3}
+      propertyPath: itemsToPool.Array.data[8].objectToPool
+      value: 
+      objectReference: {fileID: 2022262299169323760, guid: 4451cac907f95d34a8dadfccc0c20f7f, type: 3}
+    - target: {fileID: 4964017388767504654, guid: 463259875b4554093992b63e54bf12d3, type: 3}
+      propertyPath: itemsToPool.Array.data[8].shouldExpand
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7579207774110924825, guid: 463259875b4554093992b63e54bf12d3, type: 3}
@@ -20942,25 +20958,89 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 687760108859775729, guid: 1f0152f294fd0c849bf8bc724bdb5673, type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
+    - target: {fileID: 157796028753062355, guid: 1f0152f294fd0c849bf8bc724bdb5673, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 245240974653354950, guid: 1f0152f294fd0c849bf8bc724bdb5673, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1376875286954700024, guid: 1f0152f294fd0c849bf8bc724bdb5673, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1411167197118714300, guid: 1f0152f294fd0c849bf8bc724bdb5673, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1447175685508821428, guid: 1f0152f294fd0c849bf8bc724bdb5673, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1804622365773586495, guid: 1f0152f294fd0c849bf8bc724bdb5673, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3341011302913903211, guid: 1f0152f294fd0c849bf8bc724bdb5673, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3657118565394220725, guid: 1f0152f294fd0c849bf8bc724bdb5673, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3682429034070074120, guid: 1f0152f294fd0c849bf8bc724bdb5673, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3737768972771224118, guid: 1f0152f294fd0c849bf8bc724bdb5673, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3800285186634217655, guid: 1f0152f294fd0c849bf8bc724bdb5673, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4191236017935496223, guid: 1f0152f294fd0c849bf8bc724bdb5673, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4367129021968521388, guid: 1f0152f294fd0c849bf8bc724bdb5673, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4896328804944741419, guid: 1f0152f294fd0c849bf8bc724bdb5673, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4959027021264165135, guid: 1f0152f294fd0c849bf8bc724bdb5673, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5202970460160414345, guid: 1f0152f294fd0c849bf8bc724bdb5673, type: 3}
       propertyPath: Player
       value: 
       objectReference: {fileID: 183656581}
+    - target: {fileID: 5754793390377837682, guid: 1f0152f294fd0c849bf8bc724bdb5673, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7277910803910141073, guid: 1f0152f294fd0c849bf8bc724bdb5673, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7410225097785940395, guid: 1f0152f294fd0c849bf8bc724bdb5673, type: 3}
       propertyPath: _Player
       value: 
       objectReference: {fileID: 183656581}
     - target: {fileID: 7410225097785940395, guid: 1f0152f294fd0c849bf8bc724bdb5673, type: 3}
-      propertyPath: _SpawnRange
-      value: 5
+      propertyPath: _LazerSpeed
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 7410225097785940395, guid: 1f0152f294fd0c849bf8bc724bdb5673, type: 3}
-      propertyPath: _AmountToSpawn
-      value: 7
+      propertyPath: _TimeBetweenShots
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 7410225097785940395, guid: 1f0152f294fd0c849bf8bc724bdb5673, type: 3}
       propertyPath: '_TeleportPoints.Array.data[0]'
@@ -21022,9 +21102,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8044507119528712833, guid: 1f0152f294fd0c849bf8bc724bdb5673, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 9098698667131019743, guid: 1f0152f294fd0c849bf8bc724bdb5673, type: 3}
       propertyPath: m_Name
       value: Boss
+      objectReference: {fileID: 0}
+    - target: {fileID: 9098698667131019743, guid: 1f0152f294fd0c849bf8bc724bdb5673, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 9143287761447158591, guid: 1f0152f294fd0c849bf8bc724bdb5673, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -52507,6 +52599,18 @@ PrefabInstance:
     - target: {fileID: 2516253454542585956, guid: a87b4bc3a5b259b43869c5a9671397c0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5786010132527426690, guid: a87b4bc3a5b259b43869c5a9671397c0, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5786010132527426690, guid: a87b4bc3a5b259b43869c5a9671397c0, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1980
+      objectReference: {fileID: 0}
+    - target: {fileID: 5786010132527426690, guid: a87b4bc3a5b259b43869c5a9671397c0, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1020
       objectReference: {fileID: 0}
     - target: {fileID: 5834439369808862864, guid: a87b4bc3a5b259b43869c5a9671397c0, type: 3}
       propertyPath: _PlayerHealth

@@ -12,7 +12,7 @@ public enum BossState
     Idle,
     Lazer,
     CrownSlam,
-    Attack3,
+    LazerBurst,
     Summon,
     Teleporting
 }
@@ -55,6 +55,10 @@ public class BossScript : MonoBehaviour
     public float _SpawnRange;
     public float _AmountToSpawn;
 
+    public Transform _Firepoint;
+    public float _LazerSpeed;
+    public float _TimeBetweenShots;
+
 
     private void Start()
     {
@@ -87,7 +91,7 @@ public class BossScript : MonoBehaviour
                 break;
 
             case >= 5 and < 8:
-                _BossState = BossState.Attack3;
+                _BossState = BossState.LazerBurst;
                 print(_BossState);
                 break;
 
@@ -116,8 +120,8 @@ public class BossScript : MonoBehaviour
                 StartCoroutine(CrownSlam());
                 break;
 
-            case BossState.Attack3:
-                StartCoroutine(Attack3());
+            case BossState.LazerBurst:
+                StartCoroutine(LazerBurst());
                 break;
 
             case BossState.Teleporting:
@@ -134,7 +138,7 @@ public class BossScript : MonoBehaviour
         LookAtPlayer();
         if (Input.GetKeyDown(KeyCode.C))
         {
-            StartCoroutine(CrownSlam());
+            StartCoroutine(LazerBurst());
         }
 
         if (MoveCrownToPlayer == true)
@@ -154,6 +158,28 @@ public class BossScript : MonoBehaviour
         }
     }
 
+    void Shoot()
+    {
+        Debug.LogError("Shoot Function called! :D");
+        GameObject PooledBullet = ObjectPool.SharedInstance.GetPooledObject("SmallLazer");
+        if (PooledBullet != null)
+        {
+            Debug.LogError("Pulles THingsoiauhfdsjangsd");
+            PooledBullet.transform.position = _Firepoint.position;
+            PooledBullet.transform.rotation = _Firepoint.rotation;
+            PooledBullet.SetActive(true);
+            if (PooledBullet.TryGetComponent<Rigidbody>(out Rigidbody bulletRB))
+            {
+                Debug.LogError("kaboom");
+                // Clear lingering momentum from object pool reuse
+                bulletRB.linearVelocity = Vector3.zero;
+                bulletRB.angularVelocity = Vector3.zero;
+
+                // Fire instantly with Impulse mode
+                bulletRB.AddForce(_Firepoint.forward * _LazerSpeed, ForceMode.Impulse);
+            }
+        }
+    }
     //Randomly selects one of the transforms in the TeleportPoint Aray, and sets the boss to that location.
     void Teleport()
     {
@@ -227,9 +253,31 @@ public class BossScript : MonoBehaviour
         StartCoroutine(Idle());
     }
 
-    IEnumerator Attack3()
+    IEnumerator LazerBurst()
     {
-        yield return new WaitForSeconds(1);
+        Debug.LogError("Lazer Burstg Called! :D");
+        yield return new WaitForSeconds(_TimeBetweenShots);
+        Shoot();
+        yield return new WaitForSeconds(_TimeBetweenShots);
+        Shoot();
+        yield return new WaitForSeconds(_TimeBetweenShots);
+        Shoot();
+        yield return new WaitForSeconds(_TimeBetweenShots);
+        Shoot();
+        yield return new WaitForSeconds(_TimeBetweenShots);
+        Shoot();
+        yield return new WaitForSeconds(_TimeBetweenShots);
+        Shoot();
+        yield return new WaitForSeconds(_TimeBetweenShots);
+        Shoot();
+        yield return new WaitForSeconds(_TimeBetweenShots);
+        Shoot();
+        yield return new WaitForSeconds(_TimeBetweenShots);
+        Shoot();
+        yield return new WaitForSeconds(_TimeBetweenShots);
+        Shoot();
+
+
         StartCoroutine(Idle());
     }
 
