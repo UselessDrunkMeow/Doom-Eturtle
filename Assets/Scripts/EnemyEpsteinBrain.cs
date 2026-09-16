@@ -34,6 +34,7 @@ public class EnemyEpsteinBrain : MonoBehaviour
     }
     void Start()
     {
+        EffectSpawner.SpawnEffect(transform.position, "Teleport");
         gameObject.GetComponent<PlayAnimation>().PlayAnimationFunction("Run");
         playerPos = FindAnyObjectByType<PlayerShoot>().transform;
         agent = GetComponent<NavMeshAgent>();

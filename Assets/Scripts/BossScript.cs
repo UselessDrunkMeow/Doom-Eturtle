@@ -142,18 +142,7 @@ public class BossScript : MonoBehaviour
             Crown.transform.position = Vector3.MoveTowards(Crown.transform.position, new Vector3(_Player.transform.position.x, _Player.transform.position.y + 5, _Player.transform.position.z), 0.1f);
             Crown.transform.localScale = Vector3.Lerp(Crown.transform.localScale, GrowScale, 0.5f * Time.deltaTime);
         }
-        if (MoveCrownToBoss == true) //Moves the crown back to the player, and if its close, stops it and snaps it towords it.
-        {
-            Debug.LogError("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-            Crown.transform.position = Vector3.MoveTowards(Crown.transform.position, gameObject.transform.position, 0.2f);
-            Crown.transform.localScale = Vector3.Lerp(Crown.transform.localScale, TempScale, 1f * Time.deltaTime);
-            if (Vector3.Distance(Crown.transform.position.normalized, gameObject.transform.position.normalized) <= 1f)
-            {
-                Debug.LogError("DoneMoving");
-                Debug.LogError(TempPos + "UFOIGAIHFSAIUOFAIGFIAFGIYOFAGIOFGAIUOFGAIOUFGAFUIOGAOIUFGFAIL");
-                MoveCrownToBoss = false;
-            }
-        }
+        
         if (SlamCrown) //Shoots a raycast down and quickly moves the crown to the ray point.
         {
             RaycastHit hit;
@@ -217,10 +206,11 @@ public class BossScript : MonoBehaviour
 
         yield return new WaitForSeconds(0.2f); //Slams the crown onto the ground
         SlamCrown = true;
-
-        yield return new WaitForSeconds(0.2f); //Creates a Spherecast to damage the player;
+        yield return new WaitForSeconds(0.1f);
         EffectSpawner.SpawnEffect(Crown.transform.position, "DustExplosion");
-        if (Vector3.Distance(Crown.transform.position, _Player.transform.position) <= 6f)
+        yield return new WaitForSeconds(0.4f); 
+        
+        if (Vector3.Distance(Crown.transform.position, _Player.transform.position) <= 5)
         {
             _Player.GetComponent<HealthManager>().UpdateHealth(2);
         }
@@ -229,7 +219,7 @@ public class BossScript : MonoBehaviour
         SlamCrown = false;
         MoveCrownToBoss = true;
 
-        yield return new WaitForSeconds(5); //Sets the data back to how it was
+        yield return new WaitForSeconds(2); //Sets the data back to how it was
         Crown.transform.parent = TempParent;
         Crown.transform.localScale = TempScale;
         Crown.transform.localRotation = TempRot;

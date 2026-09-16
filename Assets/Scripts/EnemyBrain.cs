@@ -32,6 +32,7 @@ public class EnemyBrain : MonoBehaviour
     }
     void Start()
     {
+        EffectSpawner.SpawnEffect(transform.position, "Teleport");
         playerPos = FindAnyObjectByType<PlayerShoot>().transform;
         agent = GetComponent<NavMeshAgent>();   
         healthManager = GetComponent<HealthManager>();
