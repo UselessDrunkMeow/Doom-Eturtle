@@ -18,19 +18,23 @@ public enum BossState
 public class BossScript : MonoBehaviour
 {
     public GameObject Crown;
-    public  GameObject LaserPoint;
+    public GameObject LaserPoint;
     public float SpawnCount;
     public BossState _BossState;
     public GameObject _Player;
     public float _LookSpeed;
     public float SpawnRange;
+
     private Boolean MoveCrownToPlayer;
     private Boolean MoveCrownToBoss;
+    bool SlamCrown;
+
     Vector3 TempScale;
     Transform TempParent;
     Vector3 TempPos;
-    Vector3 GrowScale = new Vector3(10, 10 ,10);
-    
+    Quaternion TempRot;
+    Vector3 GrowScale = new Vector3(10, 10, 10);
+
     [Tooltip("Points the boss can teleport to")]
     public Transform[] _TeleportPoints;
     [Tooltip("Delay between teleports in the Teleport attack")]
@@ -112,23 +116,41 @@ public class BossScript : MonoBehaviour
     }
     private void Update()
     {
-        if(MoveCrownToPlayer == true)
+        if (Input.GetKeyDown(KeyCode.C))
         {
-            Crown.transform.position = Vector3.Lerp(TempPos, _Player.transform.position, 1 * Time.deltaTime);
-            Crown.transform.localScale = Vector3.Lerp(TempScale, GrowScale, 1 * Time.deltaTime);
+            StartCoroutine(Attack2());
         }
-        if(MoveCrownToBoss == true)
+
+        if (MoveCrownToPlayer == true)
         {
-            Crown.transform.position = Vector3.Lerp(TempPos, gameObject.transform.position, 1 * Time.deltaTime);
-            Crown.transform.localScale = Vector3.Lerp(GrowScale, TempScale, 1 * Time.deltaTime);
-            if(Crown.transform.position == gameObject.transform.position)
+            Crown.transform.position = Vector3.MoveTowards(Crown.transform.position, new Vector3(_Player.transform.position.x, _Player.transform.position.y + 5, _Player.transform.position.z), 0.1f);
+            Crown.transform.localScale = Vector3.Lerp(Crown.transform.localScale, GrowScale, 0.5f * Time.deltaTime);
+        }
+        if (MoveCrownToBoss == true)
+        {
+            Debug.LogError("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+            Crown.transform.position = Vector3.MoveTowards(Crown.transform.position, gameObject.transform.position, 0.2f);
+            Crown.transform.localScale = Vector3.Lerp(Crown.transform.localScale, TempScale, 1f * Time.deltaTime);
+            if (Vector3.Distance(Crown.transform.position.normalized, gameObject.transform.position.normalized) <= 1f)
             {
                 Debug.LogError("DoneMoving");
                 Crown.transform.parent = TempParent;
+                Crown.transform.localScale = TempScale;
+                Crown.transform.localRotation = TempRot;
+                Crown.transform.localPosition = TempPos;
+                Debug.LogError(TempPos + "UFOIGAIHFSAIUOFAIGFIAFGIYOFAGIOFGAIUOFGAIOUFGAFUIOGAOIUFGFAIL");
                 MoveCrownToBoss = false;
             }
         }
-        LookAtPlayer();
+        if (SlamCrown)
+        {
+            RaycastHit hit;
+            Physics.Raycast(Crown.transform.position, - Crown.transform.up, out hit, Mathf.Infinity);
+            if (hit.transform != null)
+            {
+                Crown.transform.position = Vector3.MoveTowards(Crown.transform.position, hit.point, 1f);
+            }
+        }
     }
 
     //Randomly selects one of the transforms in the TeleportPoint Aray, and sets the boss to that location.
@@ -164,16 +186,28 @@ public class BossScript : MonoBehaviour
     {
         TempScale = Crown.transform.localScale;
         TempParent = Crown.transform.parent;
+        TempPos = Crown.transform.localPosition;
+        TempRot = Crown.transform.localRotation;
         Debug.Log(TempParent);
         Debug.Log(Crown.transform.parent);
-        TempPos = Crown.transform.position;
         MoveCrownToPlayer = true;
         Crown.transform.parent = null;
+
         yield return new WaitForSeconds(5);
         MoveCrownToPlayer = false;
-        TempPos = Crown.transform.position;
+
+        yield return new WaitForSeconds(0.2f);
+        SlamCrown = true;
+
+        yield return new WaitForSeconds(5f);
+        SlamCrown = false;
         MoveCrownToBoss = true;
-        yield return new WaitForSeconds(1);
+
+        yield return new WaitForSeconds(5);
+        Crown.transform.parent = TempParent;
+        Crown.transform.localScale = TempScale;
+        Crown.transform.localRotation = TempRot;
+        Crown.transform.localPosition = TempPos;
         StartCoroutine(Idle());
     }
 
@@ -182,7 +216,7 @@ public class BossScript : MonoBehaviour
         yield return new WaitForSeconds(1);
         StartCoroutine(Idle());
     }
-        
+
     //Randomly teleports the boss a few times
     IEnumerator Teleporting()
     {
@@ -202,37 +236,37 @@ public class BossScript : MonoBehaviour
     IEnumerator Summon()
     {
         SpawnCount = 0;
-        while(SpawnCount != 5)
+        while (SpawnCount != 5)
         {
             GameObject PooledEnemy =
                 ObjectPool.SharedInstance.GetPooledObject("BOSSMINI");
-        
-            if (PooledEnemy != null)
-                {
-                    var BossLocation = transform.position;
-                    Vector3 position = new Vector3(
-                        UnityEngine.Random.Range(
-                            BossLocation.x - SpawnRange,
-                            BossLocation.x + SpawnRange
-                        ),
-                        0,
-                        UnityEngine.Random.Range(
-                            BossLocation.z - SpawnRange,
-                            BossLocation.z + SpawnRange
-                        )
-                    );
 
-                    PooledEnemy.transform.position = position;
-                    PooledEnemy.SetActive(true);
-                }
-            else
-                {
-                    Debug.LogWarning("Object Pool is empty! Expanding or waiting...");
-                }
-                SpawnCount++;
+            if (PooledEnemy != null)
+            {
+                var BossLocation = transform.position;
+                Vector3 position = new Vector3(
+                    UnityEngine.Random.Range(
+                        BossLocation.x - SpawnRange,
+                        BossLocation.x + SpawnRange
+                    ),
+                    0,
+                    UnityEngine.Random.Range(
+                        BossLocation.z - SpawnRange,
+                        BossLocation.z + SpawnRange
+                    )
+                );
+
+                PooledEnemy.transform.position = position;
+                PooledEnemy.SetActive(true);
             }
-        
-        
+            else
+            {
+                Debug.LogWarning("Object Pool is empty! Expanding or waiting...");
+            }
+            SpawnCount++;
+        }
+
+
         yield return new WaitForSeconds(1);
         StartCoroutine(Idle());
     }
@@ -242,7 +276,7 @@ public class BossScript : MonoBehaviour
     {
         if (healthManager != null)
         {
-            healthManager._CurrentHealth--;            
+            healthManager._CurrentHealth--;
         }
         else
         {

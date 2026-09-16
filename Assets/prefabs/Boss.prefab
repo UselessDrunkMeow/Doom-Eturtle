@@ -145,7 +145,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7f98bf2278868c4f8a47f0ef200d1b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  LaserPoint: {fileID: 0}
+  Crown: {fileID: 4367129021968521388}
+  LaserPoint: {fileID: 3682429034070074120}
   SpawnCount: 0
   _BossState: 0
   _Player: {fileID: 0}
@@ -634,6 +635,11 @@ PrefabInstance:
 --- !u!4 &4021987255647978006 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8678234248722175663, guid: caba7f7c3f60a9949b6a0625c13db156, type: 3}
+  m_PrefabInstance: {fileID: 5746505199711491257}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4367129021968521388 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8296924352952568853, guid: caba7f7c3f60a9949b6a0625c13db156, type: 3}
   m_PrefabInstance: {fileID: 5746505199711491257}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5852527300255769277

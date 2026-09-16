@@ -4396,6 +4396,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 937e7b9eba2e1dc4dbf54dfb8b0acd03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthManager
+--- !u!1 &184088654 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4367129021968521388, guid: 1f0152f294fd0c849bf8bc724bdb5673, type: 3}
+  m_PrefabInstance: {fileID: 764102031}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &195172934
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20922,9 +20927,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 7410225097785940395, guid: 1f0152f294fd0c849bf8bc724bdb5673, type: 3}
+      propertyPath: Crown
+      value: 
+      objectReference: {fileID: 184088654}
+    - target: {fileID: 7410225097785940395, guid: 1f0152f294fd0c849bf8bc724bdb5673, type: 3}
       propertyPath: _Player
       value: 
       objectReference: {fileID: 183656581}
+    - target: {fileID: 7410225097785940395, guid: 1f0152f294fd0c849bf8bc724bdb5673, type: 3}
+      propertyPath: LaserPoint
+      value: 
+      objectReference: {fileID: 906158736}
     - target: {fileID: 7410225097785940395, guid: 1f0152f294fd0c849bf8bc724bdb5673, type: 3}
       propertyPath: '_TeleportPoints.Array.data[0]'
       value: 
@@ -22909,6 +22922,10 @@ PrefabInstance:
     - target: {fileID: 5855107472517461393, guid: 935f521a6e167f0469a11097755749c4, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7354394070583458470, guid: 935f521a6e167f0469a11097755749c4, type: 3}
+      propertyPath: _MaxHealth
+      value: 5e+15
       objectReference: {fileID: 0}
     - target: {fileID: 7354394070583458470, guid: 935f521a6e167f0469a11097755749c4, type: 3}
       propertyPath: _DamageFlash
@@ -25213,6 +25230,11 @@ MonoBehaviour:
 Transform:
   m_CorrespondingSourceObject: {fileID: 468728, guid: 5aa75d848cb3e42be95b2af923989d17, type: 3}
   m_PrefabInstance: {fileID: 902154366}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &906158736 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3682429034070074120, guid: 1f0152f294fd0c849bf8bc724bdb5673, type: 3}
+  m_PrefabInstance: {fileID: 764102031}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &909621215 stripped
 Transform:
