@@ -1177,8 +1177,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 854285bc01b06fd43938c580bcdf5348, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  _HealthText: {fileID: 0}
-  _WaveText: {fileID: 0}
+  _HealthText: {fileID: 4300170394318872368}
+  _WaveText: {fileID: 1166132307058741803}
   _GameOverWaveText: {fileID: 0}
   _PlayerHealth: {fileID: 0}
   _EnemySpawnerScript: {fileID: 0}

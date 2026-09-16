@@ -1,15 +1,17 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static UnityEditor.Experimental.GraphView.GraphView;
 //States the boss can be in, Set the state via code to execute the corresponding functions
 //More states can be added if needed, and the names should be changed to describe the attack
 public enum BossState
 {
     Idle,
-    Attack1,
-    Attack2,
+    Lazer,
+    CrownSlam,
     Attack3,
     Summon,
     Teleporting
@@ -17,36 +19,47 @@ public enum BossState
 
 public class BossScript : MonoBehaviour
 {
-    public GameObject Crown;
-    public GameObject LaserPoint;
-    public float SpawnCount;
     public BossState _BossState;
     public GameObject _Player;
-    public float _LookSpeed;
-    public float SpawnRange;
+    public float _NormalLookSpeed;
+    public float _CurrentLookSpeed;
+    public LayerMask _Mask;
+    public int randomNumber;
+    HealthManager healthManager;
+    EffectSpawner effectSpawner;
 
+    [Header("Lazer Settings")]
+    public float _LazerLookSpeed;
+    public float _LazerDuration;
+    public GameObject LaserPoint;
+
+    [Header("Crown Settings")]
+    public GameObject Crown;
     private Boolean MoveCrownToPlayer;
     private Boolean MoveCrownToBoss;
     bool SlamCrown;
-
     Vector3 TempScale;
     Transform TempParent;
     Vector3 TempPos;
     Quaternion TempRot;
-    Vector3 GrowScale = new Vector3(10, 10, 10);
+    Vector3 GrowScale = new Vector3(25, 25, 25);
 
+    [Header("Teleport Settings")]
     [Tooltip("Points the boss can teleport to")]
     public Transform[] _TeleportPoints;
     [Tooltip("Delay between teleports in the Teleport attack")]
     public float _TeleportDelay;
 
-    public int randomNumber;
+    [Header("Summon Settings")]
+    float spawnCount;
+    public float _SpawnRange;
+    public float _AmountToSpawn;
 
-    HealthManager healthManager;
 
     private void Start()
     {
         healthManager = GetComponent<HealthManager>();
+        effectSpawner = GetComponent<EffectSpawner>();
         ChooseAction();
     }
     public void OnEnable()
@@ -64,12 +77,12 @@ public class BossScript : MonoBehaviour
         switch (randomNumber)
         {
             case >= 0 and < 3:
-                _BossState = BossState.Attack1;
+                _BossState = BossState.Lazer;
                 print(_BossState);
                 break;
 
             case >= 3 and < 5:
-                _BossState = BossState.Attack2;
+                _BossState = BossState.CrownSlam;
                 print(_BossState);
                 break;
 
@@ -82,6 +95,7 @@ public class BossScript : MonoBehaviour
                 print(_BossState);
                 _BossState = BossState.Teleporting;
                 break;
+
             case >= 10 and < 13:
                 print(_BossState);
                 _BossState = BossState.Summon;
@@ -94,12 +108,12 @@ public class BossScript : MonoBehaviour
                 StartCoroutine(Idle());
                 break;
 
-            case BossState.Attack1:
-                StartCoroutine(Attack1());
+            case BossState.Lazer:
+                StartCoroutine(Lazer());
                 break;
 
-            case BossState.Attack2:
-                StartCoroutine(Attack2());
+            case BossState.CrownSlam:
+                StartCoroutine(CrownSlam());
                 break;
 
             case BossState.Attack3:
@@ -109,6 +123,7 @@ public class BossScript : MonoBehaviour
             case BossState.Teleporting:
                 StartCoroutine(Teleporting());
                 break;
+
             case BossState.Summon:
                 StartCoroutine(Summon());
                 break;
@@ -116,9 +131,10 @@ public class BossScript : MonoBehaviour
     }
     private void Update()
     {
+        LookAtPlayer();
         if (Input.GetKeyDown(KeyCode.C))
         {
-            StartCoroutine(Attack2());
+            StartCoroutine(CrownSlam());
         }
 
         if (MoveCrownToPlayer == true)
@@ -126,7 +142,7 @@ public class BossScript : MonoBehaviour
             Crown.transform.position = Vector3.MoveTowards(Crown.transform.position, new Vector3(_Player.transform.position.x, _Player.transform.position.y + 5, _Player.transform.position.z), 0.1f);
             Crown.transform.localScale = Vector3.Lerp(Crown.transform.localScale, GrowScale, 0.5f * Time.deltaTime);
         }
-        if (MoveCrownToBoss == true)
+        if (MoveCrownToBoss == true) //Moves the crown back to the player, and if its close, stops it and snaps it towords it.
         {
             Debug.LogError("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
             Crown.transform.position = Vector3.MoveTowards(Crown.transform.position, gameObject.transform.position, 0.2f);
@@ -134,18 +150,14 @@ public class BossScript : MonoBehaviour
             if (Vector3.Distance(Crown.transform.position.normalized, gameObject.transform.position.normalized) <= 1f)
             {
                 Debug.LogError("DoneMoving");
-                Crown.transform.parent = TempParent;
-                Crown.transform.localScale = TempScale;
-                Crown.transform.localRotation = TempRot;
-                Crown.transform.localPosition = TempPos;
                 Debug.LogError(TempPos + "UFOIGAIHFSAIUOFAIGFIAFGIYOFAGIOFGAIUOFGAIOUFGAFUIOGAOIUFGFAIL");
                 MoveCrownToBoss = false;
             }
         }
-        if (SlamCrown)
+        if (SlamCrown) //Shoots a raycast down and quickly moves the crown to the ray point.
         {
             RaycastHit hit;
-            Physics.Raycast(Crown.transform.position, - Crown.transform.up, out hit, Mathf.Infinity);
+            Physics.Raycast(Crown.transform.position, -Crown.transform.up, out hit, Mathf.Infinity);
             if (hit.transform != null)
             {
                 Crown.transform.position = Vector3.MoveTowards(Crown.transform.position, hit.point, 1f);
@@ -156,7 +168,9 @@ public class BossScript : MonoBehaviour
     //Randomly selects one of the transforms in the TeleportPoint Aray, and sets the boss to that location.
     void Teleport()
     {
+        EffectSpawner.SpawnEffect(transform.position, "Teleport");
         transform.position = _TeleportPoints[UnityEngine.Random.Range(0, _TeleportPoints.Length)].transform.position;
+        EffectSpawner.SpawnEffect(transform.position, "Teleport");
     }
 
     //Slerps the rotation of the boss to slowly and smoothly look at the player. change _LookSpeed to change the speed.
@@ -165,24 +179,29 @@ public class BossScript : MonoBehaviour
         Vector3 lookDirection = transform.position - _Player.transform.position;
         lookDirection.Normalize();
 
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookDirection), _LookSpeed * Time.deltaTime);
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookDirection), _CurrentLookSpeed * Time.deltaTime);
     }
-    IEnumerator Idle()
+
+    IEnumerator Idle() //Boss doesnt do anything and waits before choosing a new action
     {
+        Teleport();
         _BossState = BossState.Idle;
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(2);
         ChooseAction();
     }
-    IEnumerator Attack1()
+
+    IEnumerator Lazer() //Activates the Lazer, and deactivates it after.
     {
+        _CurrentLookSpeed = _LazerLookSpeed;
         LaserPoint.SetActive(true);
-        yield return new WaitForSeconds(6);
+        yield return new WaitForSeconds(_LazerDuration);
         LaserPoint.SetActive(false);
+        _CurrentLookSpeed = _NormalLookSpeed;
         yield return new WaitForSeconds(1);
         StartCoroutine(Idle());
     }
 
-    IEnumerator Attack2()
+    IEnumerator CrownSlam() //Saves all the values of the crown, then unparents it. After its done, sets all values back.
     {
         TempScale = Crown.transform.localScale;
         TempParent = Crown.transform.parent;
@@ -193,17 +212,24 @@ public class BossScript : MonoBehaviour
         MoveCrownToPlayer = true;
         Crown.transform.parent = null;
 
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(5); //Moves crown to player
         MoveCrownToPlayer = false;
 
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.2f); //Slams the crown onto the ground
         SlamCrown = true;
 
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(0.2f); //Creates a Spherecast to damage the player;
+        EffectSpawner.SpawnEffect(Crown.transform.position, "DustExplosion");
+        if (Vector3.Distance(Crown.transform.position, _Player.transform.position) <= 6f)
+        {
+            _Player.GetComponent<HealthManager>().UpdateHealth(2);
+        }
+
+        yield return new WaitForSeconds(5f); //Moves crown back to the boss
         SlamCrown = false;
         MoveCrownToBoss = true;
 
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(5); //Sets the data back to how it was
         Crown.transform.parent = TempParent;
         Crown.transform.localScale = TempScale;
         Crown.transform.localRotation = TempRot;
@@ -235,8 +261,8 @@ public class BossScript : MonoBehaviour
     }
     IEnumerator Summon()
     {
-        SpawnCount = 0;
-        while (SpawnCount != 5)
+        spawnCount = 0;
+        while (spawnCount != _AmountToSpawn)
         {
             GameObject PooledEnemy =
                 ObjectPool.SharedInstance.GetPooledObject("BOSSMINI");
@@ -246,13 +272,13 @@ public class BossScript : MonoBehaviour
                 var BossLocation = transform.position;
                 Vector3 position = new Vector3(
                     UnityEngine.Random.Range(
-                        BossLocation.x - SpawnRange,
-                        BossLocation.x + SpawnRange
+                        BossLocation.x - _SpawnRange,
+                        BossLocation.x + _SpawnRange
                     ),
                     0,
                     UnityEngine.Random.Range(
-                        BossLocation.z - SpawnRange,
-                        BossLocation.z + SpawnRange
+                        BossLocation.z - _SpawnRange,
+                        BossLocation.z + _SpawnRange
                     )
                 );
 
@@ -263,11 +289,9 @@ public class BossScript : MonoBehaviour
             {
                 Debug.LogWarning("Object Pool is empty! Expanding or waiting...");
             }
-            SpawnCount++;
+            spawnCount++;
         }
-
-
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(5);
         StartCoroutine(Idle());
     }
 
@@ -295,4 +319,6 @@ public class BossScript : MonoBehaviour
             }
         }
     }
+
+
 }

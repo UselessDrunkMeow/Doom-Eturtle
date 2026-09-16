@@ -61,8 +61,7 @@ public class EnemyBrain : MonoBehaviour
         Debug.DrawRay(transform.transform.position, transform.forward * _AttackRange, UnityEngine.Color.purple);
     }
     public void Chase()
-    {
-        //color.color = UnityEngine.Color.red;
+    {        
         gameObject.GetComponent<PlayAnimation>().PlayAnimationFunction("Run");
         agent.isStopped = false;
     }
