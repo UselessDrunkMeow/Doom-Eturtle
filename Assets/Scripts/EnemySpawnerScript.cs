@@ -23,7 +23,13 @@ public class EnemySpawnerScript : MonoBehaviour
     public float distance;
     public float maxdistance;
     public GameObject Player;
+    private float BossWave;
     public List<BoxCollider> Spawnable;
+    public HealthManager Jheffreighy;
+    public HealthManager Æpfftsteyghnn;
+    public HealthManager PlayerHealth;
+    public HealthManager Boss;
+    public float DifficultyFactor = 1.1f;
 
     void Start()
     {
@@ -46,55 +52,84 @@ public class EnemySpawnerScript : MonoBehaviour
         }
         InitialSpawnCredit = SpawnCredit;
     }
+    void WaveHarder()
+    {
+        Jheffreighy._MaxHealth = Jheffreighy._MaxHealth * DifficultyFactor;
+        Æpfftsteyghnn._MaxHealth = Æpfftsteyghnn._MaxHealth * DifficultyFactor;
+        if (wavecount >= BossWave)
+        {
+            Boss._MaxHealth = Boss._MaxHealth * DifficultyFactor;
+        }
+    }
+
     void SpawnWave()
     {
-        while (SpawnCredit != 0)
+        WaveHarder();
+        if (wavecount >= BossWave)
         {
-            if (Spawnable.Count == 0)
-            {
-                Debug.Log("No spawnable colliders! Player too close!");
-                break;
-            }
-
-            int spawnableIndex = UnityEngine.Random.Range(0, Spawnable.Count);
-
-            WhatEnemyToSpawn();
-
-            BoxCollider selectedCollider = Spawnable[spawnableIndex];
-
-            int colliderIndex = colliders.IndexOf(selectedCollider);
-
-            GameObject PooledEnemy =
-                ObjectPool.SharedInstance.GetPooledObject(EnemyToSpawn);
-
+            GameObject PooledEnemy = ObjectPool.SharedInstance.GetPooledObject("Boss");
             if (PooledEnemy != null)
             {
-                Vector3 position = new Vector3(
-                    UnityEngine.Random.Range(
-                        cornerOne[colliderIndex].x,
-                        cornerTwo[colliderIndex].x
-                    ),
-                    0,
-                    UnityEngine.Random.Range(
-                        cornerOne[colliderIndex].z,
-                        cornerTwo[colliderIndex].z
-                    )
-                );
-
+                Vector3 position = new Vector3(3.5f, 0.6f, 2.12f);
                 PooledEnemy.transform.position = position;
                 PooledEnemy.SetActive(true);
                 Enemies.Add(PooledEnemy);
-
-                SpawnCredit -= enemyOneCost;
             }
-            else
+            PlayerHealth._MaxHealth = PlayerHealth._MaxHealth + 1;
+            BossWave = BossWave + 15;
+        }
+        else
+        {
+            while (SpawnCredit != 0)
             {
-                Debug.LogWarning("Object Pool is empty! Expanding or waiting...");
-                break;
+                if (Spawnable.Count == 0)
+                {
+                    Debug.Log("No spawnable colliders! Player too close!");
+                    break;
+                }
+
+                int spawnableIndex = UnityEngine.Random.Range(0, Spawnable.Count);
+
+                WhatEnemyToSpawn();
+
+                BoxCollider selectedCollider = Spawnable[spawnableIndex];
+
+                int colliderIndex = colliders.IndexOf(selectedCollider);
+
+                GameObject PooledEnemy =
+                    ObjectPool.SharedInstance.GetPooledObject(EnemyToSpawn);
+
+                if (PooledEnemy != null)
+                {
+                    Vector3 position = new Vector3(
+                        UnityEngine.Random.Range(
+                            cornerOne[colliderIndex].x,
+                            cornerTwo[colliderIndex].x
+                        ),
+                        0,
+                        UnityEngine.Random.Range(
+                            cornerOne[colliderIndex].z,
+                            cornerTwo[colliderIndex].z
+                        )
+                    );
+
+                    PooledEnemy.transform.position = position;
+                    PooledEnemy.SetActive(true);
+                    Enemies.Add(PooledEnemy);
+
+                    SpawnCredit -= enemyOneCost;
+                }
+
+                else
+                {
+                    Debug.LogWarning("Object Pool is empty! Expanding or waiting...");
+                    break;
+                }
             }
         }
 
         wavecount++;
+        PlayerHealth._CurrentHealth = PlayerHealth._MaxHealth;
         SpawnCredit = InitialSpawnCredit + wavecount + 3;
     }
 
