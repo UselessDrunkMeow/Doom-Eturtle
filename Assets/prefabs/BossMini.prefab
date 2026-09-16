@@ -392,7 +392,6 @@ GameObject:
   - component: {fileID: 5481654096842285103}
   - component: {fileID: 8442319425142126637}
   - component: {fileID: 1692468744525290137}
-  - component: {fileID: 7778855348862646706}
   - component: {fileID: 7138516212978265018}
   m_Layer: 0
   m_Name: BossMini
@@ -515,7 +514,7 @@ Animator:
   m_GameObject: {fileID: 5849746235925260095}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 1db38da97b6ad094dbca967f13dd370f, type: 3}
-  m_Controller: {fileID: 9100000, guid: e1e78fcd5772a411a9afb262e0ac0479, type: 2}
+  m_Controller: {fileID: 9100000, guid: 968be0aad8f9c4e4d963f7bc5a1d44d8, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -527,27 +526,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!111 &7778855348862646706
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5849746235925260095}
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Animation: {fileID: 7400000, guid: 6098175c4d4a46343be4d6857847330b, type: 3}
-  m_Animations:
-  - {fileID: 7400000, guid: 6098175c4d4a46343be4d6857847330b, type: 3}
-  - {fileID: 7400000, guid: 87aca181203408543942305a65e47c0b, type: 3}
-  - {fileID: 7400000, guid: 8af2259933ccf2e47b0a9493f3516fc4, type: 3}
-  - {fileID: 7400000, guid: 3cab52bd39b9a5f4fb028f9ae0ecbc91, type: 3}
-  - {fileID: 7400000, guid: 3e63abeab47efea44a9868d7d769abcf, type: 3}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_UpdateMode: 0
-  m_CullingType: 0
 --- !u!136 &7138516212978265018
 CapsuleCollider:
   m_ObjectHideFlags: 0
