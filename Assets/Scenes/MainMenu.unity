@@ -1392,7 +1392,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1893261157}
   m_Direction: 0
   m_MinValue: 0.1
-  m_MaxValue: 10
+  m_MaxValue: 20
   m_WholeNumbers: 0
   m_Value: 1
   m_OnValueChanged:
@@ -1411,7 +1411,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraSensitivity
   Player: {fileID: 1262534793850086243, guid: 935f521a6e167f0469a11097755749c4, type: 3}
-  Slider: {fileID: 0}
+  Slider: {fileID: 1025568121}
 --- !u!1 &1042856440
 GameObject:
   m_ObjectHideFlags: 0
