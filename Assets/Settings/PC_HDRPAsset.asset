@@ -211,10 +211,10 @@ MonoBehaviour:
   m_NumIterationsEnclosingSphere: 64
   m_RenderPipelineSettings:
     supportShadowMask: 1
-    supportSSR: 0
-    supportSSRTransparent: 0
+    supportSSR: 1
+    supportSSRTransparent: 1
     supportSSAO: 1
-    supportSSGI: 0
+    supportSSGI: 1
     supportSubsurfaceScattering: 1
     subsurfaceScatteringAttenuation: 1
     sssSampleBudget:
@@ -227,8 +227,8 @@ MonoBehaviour:
         m_Id: With3Levels
     supportVolumetrics: 1
     supportVolumetricClouds: 0
-    supportLightLayers: 0
-    renderingLayerMaskBuffer: 0
+    supportLightLayers: 1
+    renderingLayerMaskBuffer: 1
     supportWater: 0
     waterSimulationResolution: 128
     supportWaterExclusion: 1
@@ -278,7 +278,7 @@ MonoBehaviour:
     lightProbeSystem: 1
     oldLightProbeSystem: 0
     probeVolumeMemoryBudget: 1024
-    supportProbeVolumeGPUStreaming: 0
+    supportProbeVolumeGPUStreaming: 1
     supportProbeVolumeDiskStreaming: 0
     probeVolumeSHBands: 1
     supportProbeVolumeScenarios: 0
@@ -300,7 +300,7 @@ MonoBehaviour:
       reflectionProbeFormat: 74
       reflectionProbeTexCacheSize: 4096
       reflectionProbeTexLastValidCubeMip: 3
-      reflectionProbeTexLastValidPlanarMip: 0
+      reflectionProbeTexLastValidPlanarMip: 2
       reflectionProbeDecreaseResToFit: 1
       skyReflectionSize: 256
       skyLightingOverrideLayerMask:

@@ -1396,6 +1396,13 @@ MonoBehaviour:
   _AttackRange: 2
   _AttackCooldown: 2
   _DamageStun: 0.5
+  _AttackDelay: 0
+  _Damage: 0
+  _LayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  _Death: 0
+  _AttackBoxHalfExtents: {x: 0.5, y: 0.5, z: 0.5}
 --- !u!114 &5481654096842285103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1425,6 +1432,9 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   _CurrentHealth: 5
+  _DamageFlash: {fileID: 0}
+  IFrames: 0
+  IsPlayer: 0
 --- !u!136 &7450847276284643839
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1695,7 +1705,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 9452ae1262a74094f8a68013fbcd1834, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -843,7 +843,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 9452ae1262a74094f8a68013fbcd1834, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -912,6 +912,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _CurrentHealth: 0
+  _DamageFlash: {fileID: 0}
+  IFrames: 0
+  IsPlayer: 0
 --- !u!114 &1954822142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -924,10 +927,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 761097d3a7fd54a3fb6b7229d3a4920a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjectPool
-  pooledObjects: []
-  objectToPool: {fileID: 5849746235925260095, guid: a4e7aadf3e4d14eac8c46514e4807470, type: 3}
-  amountToPool: 100
-  shouldExpand: 1
+  itemsToPool: []
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

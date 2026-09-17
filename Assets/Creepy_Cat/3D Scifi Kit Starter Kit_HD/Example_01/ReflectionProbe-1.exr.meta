@@ -1,5 +1,12 @@
 fileFormatVersion: 2
 guid: 8a13a7fa2755e084fab7d743006e6f00
+AssetOrigin:
+  serializedVersion: 1
+  productId: 92152
+  packageName: 3D Scifi Kit Starter Kit
+  packageVersion: 3.5
+  assetPath: Assets/Creepy_Cat/3D Scifi Kit Starter Kit_HD/Example_01/ReflectionProbe-1.exr
+  uploadId: 903402
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -141,10 +148,3 @@ TextureImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 92152
-  packageName: 3D Scifi Kit Starter Kit
-  packageVersion: 3.5
-  assetPath: Assets/Creepy_Cat/3D Scifi Kit Starter Kit_HD/Example_01/ReflectionProbe-1.exr
-  uploadId: 903402
