@@ -99,8 +99,7 @@ public class EnemyBrain : MonoBehaviour
     public void onDeath()
     {
         _Death = true;
-        healthManager.enabled = false;
-        EffectSpawner.SpawnEffect(gameObject.transform.position, "EnergyBlast");
+        healthManager.enabled = false;        
         StartCoroutine(DeathCoroutine());
 
     }

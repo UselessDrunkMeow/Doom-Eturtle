@@ -255,6 +255,7 @@ public class BossScript : MonoBehaviour
 
     IEnumerator LazerBurst()
     {
+        _CurrentLookSpeed = _LazerLookSpeed;      
         Debug.LogError("Lazer Burstg Called! :D");
         yield return new WaitForSeconds(_TimeBetweenShots);
         Shoot();
@@ -276,8 +277,7 @@ public class BossScript : MonoBehaviour
         Shoot();
         yield return new WaitForSeconds(_TimeBetweenShots);
         Shoot();
-
-
+        _CurrentLookSpeed = _NormalLookSpeed;
         StartCoroutine(Idle());
     }
 
