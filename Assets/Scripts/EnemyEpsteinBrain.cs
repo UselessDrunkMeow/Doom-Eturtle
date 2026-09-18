@@ -17,6 +17,7 @@ public class EnemyEpsteinBrain : MonoBehaviour
     public int _Damage;
     public LayerMask _LayerMask;
     public bool _Death = false;
+    public Transform damageVFXPoint;
 
     HealthManager healthManager;
     Material color;
@@ -117,6 +118,7 @@ public class EnemyEpsteinBrain : MonoBehaviour
         {
             healthManager._CurrentHealth--;
             gameObject.GetComponent<PlayAnimation>().PlayAnimationFunction("TakeDamage");
+            EffectSpawner.SpawnEffect(damageVFXPoint.position, "DamageVFX");
             //color.color = UnityEngine.Color.darkRed;
             agent.isStopped = true;
             yield return new WaitForSeconds(_DamageStun);

@@ -55,12 +55,14 @@ public class BossScript : MonoBehaviour
     public Transform _Firepoint;
     public float _LazerSpeed;
     public float _TimeBetweenShots;
+    public Transform damageVFXPoint;
+    bool isDead = false;
 
     private void Awake()
     {
         _UI_Manager = FindAnyObjectByType<UI_Manager>();
         healthManager = GetComponent<HealthManager>();
-        effectSpawner = GetComponent<EffectSpawner>();        
+        effectSpawner = GetComponent<EffectSpawner>();
     }
     private void Start()
     {
@@ -73,6 +75,7 @@ public class BossScript : MonoBehaviour
     void DOSHITONANABLE()
     {
         Teleport();
+        ChooseAction();
         LaserPoint.SetActive(false);
         _UI_Manager.ToggleBossBar();
         print("odshguihguiodhgodshgdsijhguisd ENEABLEsdijlgdsgbdsg");
@@ -83,61 +86,64 @@ public class BossScript : MonoBehaviour
     //make sure to start each case with the highest number of the case before it.
     public void ChooseAction()
     {
-        print("uuuuhm halloooo???");
-        randomNumber = UnityEngine.Random.Range(0, 13);
-        switch (randomNumber)
+        if (!isDead)
         {
-            case >= 0 and < 3:
-                _BossState = BossState.Lazer;
-                print(_BossState);
-                break;
+            print("uuuuhm halloooo???");
+            randomNumber = UnityEngine.Random.Range(0, 13);
+            switch (randomNumber)
+            {
+                case >= 0 and < 3:
+                    _BossState = BossState.Lazer;
+                    print(_BossState);
+                    break;
 
-            case >= 3 and < 5:
-                _BossState = BossState.CrownSlam;
-                print(_BossState);
-                break;
+                case >= 3 and < 5:
+                    _BossState = BossState.CrownSlam;
+                    print(_BossState);
+                    break;
 
-            case >= 5 and < 8:
-                _BossState = BossState.LazerBurst;
-                print(_BossState);
-                break;
+                case >= 5 and < 8:
+                    _BossState = BossState.LazerBurst;
+                    print(_BossState);
+                    break;
 
-            case >= 8 and < 10:
-                print(_BossState);
-                _BossState = BossState.Teleporting;
-                break;
+                case >= 8 and < 10:
+                    print(_BossState);
+                    _BossState = BossState.Teleporting;
+                    break;
 
-            case >= 10 and < 13:
-                print(_BossState);
-                _BossState = BossState.Summon;
-                break;
-        }
+                case >= 10 and < 13:
+                    print(_BossState);
+                    _BossState = BossState.Summon;
+                    break;
+            }
 
-        switch (_BossState)
-        {
-            case BossState.Idle:
-                StartCoroutine(Idle());
-                break;
+            switch (_BossState)
+            {
+                case BossState.Idle:
+                    StartCoroutine(Idle());
+                    break;
 
-            case BossState.Lazer:
-                StartCoroutine(Lazer());
-                break;
+                case BossState.Lazer:
+                    StartCoroutine(Lazer());
+                    break;
 
-            case BossState.CrownSlam:
-                StartCoroutine(CrownSlam());
-                break;
+                case BossState.CrownSlam:
+                    StartCoroutine(CrownSlam());
+                    break;
 
-            case BossState.LazerBurst:
-                StartCoroutine(LazerBurst());
-                break;
+                case BossState.LazerBurst:
+                    StartCoroutine(LazerBurst());
+                    break;
 
-            case BossState.Teleporting:
-                StartCoroutine(Teleporting());
-                break;
+                case BossState.Teleporting:
+                    StartCoroutine(Teleporting());
+                    break;
 
-            case BossState.Summon:
-                StartCoroutine(Summon());
-                break;
+                case BossState.Summon:
+                    StartCoroutine(Summon());
+                    break;
+            }
         }
     }
     private void Update()
@@ -345,6 +351,7 @@ public class BossScript : MonoBehaviour
     {
         if (healthManager != null)
         {
+            EffectSpawner.SpawnEffect(damageVFXPoint.position, "DamageVFX");
             healthManager._CurrentHealth--;
         }
         else
@@ -354,7 +361,15 @@ public class BossScript : MonoBehaviour
     }
     public void Death()
     {
+        StartCoroutine(DeathCoroutine());
+    }
+    private IEnumerator DeathCoroutine()
+    {
         _UI_Manager.ToggleBossBar();
+        isDead = true;
+        gameObject.GetComponent<PlayAnimation>().PlayAnimationFunction("Death");
+        yield return new WaitForSeconds(6.75f);
+
         gameObject.SetActive(false);
     }
 

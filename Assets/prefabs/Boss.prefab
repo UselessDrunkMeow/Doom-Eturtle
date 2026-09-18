@@ -65,6 +65,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7472856297546997916}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!1 &2335674471611621590
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9025943555937732320}
+  m_Layer: 8
+  m_Name: DamagePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9025943555937732320
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2335674471611621590}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.70710576, z: -0, w: 0.70710784}
+  m_LocalPosition: {x: 0, y: 0.592, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4146514920654986255}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3682429034070074120
 GameObject:
   m_ObjectHideFlags: 0
@@ -186,6 +217,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   randomNumber: 0
+  _UI_Manager: {fileID: 0}
   _LazerLookSpeed: 2
   _LazerDuration: 10
   LaserPoint: {fileID: 3682429034070074120}
@@ -214,7 +246,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 937e7b9eba2e1dc4dbf54dfb8b0acd03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthManager
-  _MaxHealth: 150
+  _MaxHealth: 5
   OnDeath:
     m_PersistentCalls:
       m_Calls:
@@ -702,6 +734,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 23c1309411599734494603122fdce210, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3011028590624532942}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 23c1309411599734494603122fdce210, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9025943555937732320}
     - targetCorrespondingSourceObject: {fileID: 2056829134847562002, guid: 23c1309411599734494603122fdce210, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1799809826596939452}
