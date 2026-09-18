@@ -1,10 +1,10 @@
 using System.Runtime.InteropServices;
 using UnityEngine;
-using static UnityEngine.Rendering.DebugUI.Table;
+
 
 public class Bullet : MonoBehaviour
 {
-    public float MaxProjectileLifetime = 50;
+    public float MaxProjectileLifetime = 5;
     public float ProjectileLifetime;
 
     public bool _Bounce = false;
@@ -20,6 +20,17 @@ public class Bullet : MonoBehaviour
     private void OnEnable()
     {
         BounceCount = 0;
+        ProjectileLifetime = 0;
+    }
+    private void Update()
+    {
+        ProjectileLifetime = ProjectileLifetime + Time.deltaTime;
+        if (ProjectileLifetime > MaxProjectileLifetime)
+        {
+            print("FUCK EVERYEVERYGGDIOUIHYGIIYGEVERYGGDIOUIHYGIIYGEVERYGGDIOUIHYGIIYGEVERYGGDIOUIHYGIIYGEVERYGGDIOUIHYGIIYGEVERYGGDIOUIHYGIIYGEVERYGGDIOUIHYGIIYGEVERYGGDIOUIHYGIIYGEVERYGGDIOUIHYGIIYGEVERYGGDIOUIHYGIIYGGGDIOUIHYGIIYG");
+            gameObject.SetActive(false);
+            ProjectileLifetime = 0;
+        }
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -35,7 +46,7 @@ public class Bullet : MonoBehaviour
             {
                 gameObject.SetActive(false);
             }
-            
+
         }
         else if (!_Bounce)
         {

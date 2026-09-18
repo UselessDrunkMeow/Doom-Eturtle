@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -25,6 +26,7 @@ public class BossScript : MonoBehaviour
     public float _CurrentLookSpeed;
     public LayerMask _Mask;
     public int randomNumber;
+    UI_Manager uiman;
     HealthManager healthManager;
     EffectSpawner effectSpawner;
 
@@ -64,10 +66,12 @@ public class BossScript : MonoBehaviour
     {
         healthManager = GetComponent<HealthManager>();
         effectSpawner = GetComponent<EffectSpawner>();
-        ChooseAction();
+        uiman = FindAnyObjectByType<UI_Manager>();       
     }
     public void OnEnable()
     {
+        Teleport();
+        uiman.ToggleBossBar();
         LaserPoint.SetActive(false);
     }
 
@@ -344,6 +348,11 @@ public class BossScript : MonoBehaviour
         {
             UnityEngine.Debug.LogError("no healthmanager");
         }
+    }
+    public void Death()
+    {
+        uiman.ToggleBossBar();
+        gameObject.SetActive(false);
     }
 
     private void OnCollisionEnter(Collision collision)

@@ -9,6 +9,8 @@ public class UI_Manager : MonoBehaviour
 
     public HealthManager _PlayerHealth;
     public EnemySpawnerScript _EnemySpawnerScript;
+    public GameObject _BossBar;
+    bool enableBossBar;
 
     public bool _GameOver;
     PlayerShoot player;
@@ -24,6 +26,19 @@ public class UI_Manager : MonoBehaviour
         _HealthText.text = _PlayerHealth._CurrentHealth.ToString();
         _WaveText.text = _EnemySpawnerScript.wavecount.ToString();
         _GameOverWaveText.text = "Wave: " + _EnemySpawnerScript.wavecount.ToString();
+
+        if (enableBossBar)
+        {
+            _BossBar.SetActive(true);
+        }
+        else
+        {
+            _BossBar.SetActive(false);
+        }
+    }
+    public  void ToggleBossBar()
+    {
+        enableBossBar = !enableBossBar;
     }
 
     public void GameOver()
