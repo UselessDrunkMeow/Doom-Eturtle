@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Xml;
 using UnityEngine;
 using UnityEngine.UIElements;
-using static UnityEditor.Experimental.GraphView.GraphView;
+
 //States the boss can be in, Set the state via code to execute the corresponding functions
 //More states can be added if needed, and the names should be changed to describe the attack
 public enum BossState
