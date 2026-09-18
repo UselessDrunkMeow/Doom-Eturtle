@@ -24,6 +24,7 @@ public class PlayAnimation : MonoBehaviour
         else if (Animation == "Run")
         {
             IsRunning = !IsRunning;
+            anim.SetFloat("RunningOffset", Random.value);
             anim.SetBool("IsRunning", IsRunning);
         }
         else if(Animation == "RandomAttack")
