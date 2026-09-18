@@ -10,7 +10,7 @@ public class UI_Manager : MonoBehaviour
     public HealthManager _PlayerHealth;
     public EnemySpawnerScript _EnemySpawnerScript;
     public GameObject _BossBar;
-    bool enableBossBar;
+    [SerializeField] bool enableBossBar = false;
 
     public bool _GameOver;
     PlayerShoot player;
@@ -36,8 +36,9 @@ public class UI_Manager : MonoBehaviour
             _BossBar.SetActive(false);
         }
     }
-    public  void ToggleBossBar()
+    public void ToggleBossBar()
     {
+        Debug.LogError("TOGGLE THE FUCKING BAR YOU CHILD FRICKER");
         enableBossBar = !enableBossBar;
     }
 
