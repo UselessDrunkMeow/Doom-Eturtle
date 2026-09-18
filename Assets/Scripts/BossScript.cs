@@ -1,11 +1,6 @@
-using JetBrains.Annotations;
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Xml;
 using UnityEngine;
-using UnityEngine.UIElements;
-using static UnityEditor.Experimental.GraphView.GraphView;
 //States the boss can be in, Set the state via code to execute the corresponding functions
 //More states can be added if needed, and the names should be changed to describe the attack
 public enum BossState
@@ -26,7 +21,7 @@ public class BossScript : MonoBehaviour
     public float _CurrentLookSpeed;
     public LayerMask _Mask;
     public int randomNumber;
-    UI_Manager uiman;
+    [SerializeField] UI_Manager _UI_Manager;
     HealthManager healthManager;
     EffectSpawner effectSpawner;
 
@@ -61,18 +56,26 @@ public class BossScript : MonoBehaviour
     public float _LazerSpeed;
     public float _TimeBetweenShots;
 
-
+    private void Awake()
+    {
+        _UI_Manager = FindAnyObjectByType<UI_Manager>();
+        healthManager = GetComponent<HealthManager>();
+        effectSpawner = GetComponent<EffectSpawner>();        
+    }
     private void Start()
     {
-        healthManager = GetComponent<HealthManager>();
-        effectSpawner = GetComponent<EffectSpawner>();
-        uiman = FindAnyObjectByType<UI_Manager>();       
+
     }
-    public void OnEnable()
+    private void OnEnable()
+    {
+        DOSHITONANABLE();
+    }
+    void DOSHITONANABLE()
     {
         Teleport();
-        uiman.ToggleBossBar();
         LaserPoint.SetActive(false);
+        _UI_Manager.ToggleBossBar();
+        print("odshguihguiodhgodshgdsijhguisd ENEABLEsdijlgdsgbdsg");
     }
 
     //sellect a random action to take, like one of its ttacks, or summoning of extra enemies, teleporting etc
@@ -150,7 +153,7 @@ public class BossScript : MonoBehaviour
             Crown.transform.position = Vector3.MoveTowards(Crown.transform.position, new Vector3(_Player.transform.position.x, _Player.transform.position.y + 5, _Player.transform.position.z), 0.1f);
             Crown.transform.localScale = Vector3.Lerp(Crown.transform.localScale, GrowScale, 0.5f * Time.deltaTime);
         }
-        
+
         if (SlamCrown) //Shoots a raycast down and quickly moves the crown to the ray point.
         {
             RaycastHit hit;
@@ -238,8 +241,8 @@ public class BossScript : MonoBehaviour
         SlamCrown = true;
         yield return new WaitForSeconds(0.1f);
         EffectSpawner.SpawnEffect(Crown.transform.position, "DustExplosion");
-        yield return new WaitForSeconds(0.4f); 
-        
+        yield return new WaitForSeconds(0.4f);
+
         if (Vector3.Distance(Crown.transform.position, _Player.transform.position) <= 5)
         {
             _Player.GetComponent<HealthManager>().UpdateHealth(2);
@@ -259,7 +262,7 @@ public class BossScript : MonoBehaviour
 
     IEnumerator LazerBurst()
     {
-        _CurrentLookSpeed = _LazerLookSpeed;      
+        _CurrentLookSpeed = _LazerLookSpeed;
         Debug.LogError("Lazer Burstg Called! :D");
         yield return new WaitForSeconds(_TimeBetweenShots);
         Shoot();
@@ -351,7 +354,7 @@ public class BossScript : MonoBehaviour
     }
     public void Death()
     {
-        uiman.ToggleBossBar();
+        _UI_Manager.ToggleBossBar();
         gameObject.SetActive(false);
     }
 

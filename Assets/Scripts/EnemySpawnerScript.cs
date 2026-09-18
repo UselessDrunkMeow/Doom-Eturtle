@@ -29,7 +29,7 @@ public class EnemySpawnerScript : MonoBehaviour
     public HealthManager Æpfftsteyghnn;
     public HealthManager PlayerHealth;
     public GameObject Boss;
-    public float DifficultyFactor = 1.1f;  
+    public float DifficultyFactor = 1.1f;
 
     void Start()
     {
@@ -66,13 +66,14 @@ public class EnemySpawnerScript : MonoBehaviour
     {
         //WaveHarder();
         Debug.LogWarning("wavecount = " + wavecount + "Bosswave =" + BossWave);
-        if (wavecount >= BossWave)
+        if (wavecount == BossWave)
         {
             Debug.LogWarning("WHAT THE FUCK WHY DO U AAAAAAAAA");
             Boss.gameObject.SetActive(true);
+            Enemies.Add(Boss.gameObject);
             Boss.GetComponent<HealthManager>()._CurrentHealth = Boss.GetComponent<HealthManager>()._MaxHealth;
             Player.GetComponent<HealthManager>()._MaxHealth = Player.GetComponent<HealthManager>()._MaxHealth + 1;
-            BossWave = BossWave + 15;
+            BossWave = BossWave + 5;
         }
         else
         {
@@ -113,8 +114,6 @@ public class EnemySpawnerScript : MonoBehaviour
                     PooledEnemy.transform.position = position;
                     PooledEnemy.SetActive(true);
                     Enemies.Add(PooledEnemy);
-
-                    SpawnCredit -= enemyOneCost;
                 }
 
                 else
@@ -125,8 +124,8 @@ public class EnemySpawnerScript : MonoBehaviour
             }
         }
 
-        
-        SpawnCredit = InitialSpawnCredit + wavecount + 3;        
+
+        SpawnCredit = InitialSpawnCredit + wavecount + 3;
         wavecount++;
         PlayerHealth._CurrentHealth = PlayerHealth._MaxHealth;
     }
@@ -152,10 +151,11 @@ public class EnemySpawnerScript : MonoBehaviour
             }
         }
 
-        else if (SpawnCredit <= enemyTwoCost)
+        else if (SpawnCredit < enemyTwoCost)
         {
             EnemyToSpawn = "Jheffreighy";
             print("Jheffreighy SPAWNERD");
+            SpawnCredit = SpawnCredit - enemyOneCost;
         }
     }
 

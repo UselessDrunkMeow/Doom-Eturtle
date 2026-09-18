@@ -108,8 +108,8 @@ public class EnemyBrain : MonoBehaviour
         gameObject.GetComponent<PlayAnimation>().PlayAnimationFunction("Death");
 
         yield return new WaitForSeconds(1f);
-
         gameObject.SetActive(false);
+        EffectSpawner.SpawnEffect(transform.position, "Jefsplosion");
     }
 
     IEnumerator Damage()
