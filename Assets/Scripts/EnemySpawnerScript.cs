@@ -73,7 +73,7 @@ public class EnemySpawnerScript : MonoBehaviour
             Enemies.Add(Boss.gameObject);
             Boss.GetComponent<HealthManager>()._CurrentHealth = Boss.GetComponent<HealthManager>()._MaxHealth;
             Player.GetComponent<HealthManager>()._MaxHealth = Player.GetComponent<HealthManager>()._MaxHealth + 1;
-            BossWave = BossWave + 5;
+            BossWave = BossWave + 10;
         }
         else
         {

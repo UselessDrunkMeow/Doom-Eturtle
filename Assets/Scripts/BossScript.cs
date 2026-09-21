@@ -254,11 +254,11 @@ public class BossScript : MonoBehaviour
             _Player.GetComponent<HealthManager>().UpdateHealth(2);
         }
 
-        yield return new WaitForSeconds(5f); //Moves crown back to the boss
+        yield return new WaitForSeconds(2f); //Moves crown back to the boss
         SlamCrown = false;
         MoveCrownToBoss = true;
 
-        yield return new WaitForSeconds(2); //Sets the data back to how it was
+        yield return new WaitForSeconds(0.25f); //Sets the data back to how it was
         Crown.transform.parent = TempParent;
         Crown.transform.localScale = TempScale;
         Crown.transform.localRotation = TempRot;
@@ -368,8 +368,9 @@ public class BossScript : MonoBehaviour
         _UI_Manager.ToggleBossBar();
         isDead = true;
         gameObject.GetComponent<PlayAnimation>().PlayAnimationFunction("Death");
-        yield return new WaitForSeconds(6.75f);
+        yield return new WaitForSeconds(6.35f);
 
+        Crown.SetActive(false);
         gameObject.SetActive(false);
     }
 
