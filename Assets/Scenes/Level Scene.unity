@@ -22956,22 +22956,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 474379191303060651, guid: 935f521a6e167f0469a11097755749c4, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1262534793850086243, guid: 935f521a6e167f0469a11097755749c4, type: 3}
-      propertyPath: JumpHeight
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1412897757654357044, guid: 935f521a6e167f0469a11097755749c4, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1614918859006173947, guid: 935f521a6e167f0469a11097755749c4, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4622421774978990175, guid: 935f521a6e167f0469a11097755749c4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.33
@@ -23010,18 +22994,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4622421774978990175, guid: 935f521a6e167f0469a11097755749c4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5254667076843677762, guid: 935f521a6e167f0469a11097755749c4, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5681767180995651460, guid: 935f521a6e167f0469a11097755749c4, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5855107472517461393, guid: 935f521a6e167f0469a11097755749c4, type: 3}
-      propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7354394070583458470, guid: 935f521a6e167f0469a11097755749c4, type: 3}
