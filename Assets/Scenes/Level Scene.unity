@@ -22974,7 +22974,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4622421774978990175, guid: 935f521a6e167f0469a11097755749c4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1
+      value: 3.33
       objectReference: {fileID: 0}
     - target: {fileID: 4622421774978990175, guid: 935f521a6e167f0469a11097755749c4, type: 3}
       propertyPath: m_LocalPosition.y
@@ -22982,7 +22982,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4622421774978990175, guid: 935f521a6e167f0469a11097755749c4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 1.86
       objectReference: {fileID: 0}
     - target: {fileID: 4622421774978990175, guid: 935f521a6e167f0469a11097755749c4, type: 3}
       propertyPath: m_LocalRotation.w
@@ -52851,8 +52851,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2219107642941495862, guid: 1f0152f294fd0c849bf8bc724bdb5673, type: 3}
       propertyPath: _MaxHealth
-      value: 50
+      value: 200
       objectReference: {fileID: 0}
+    - target: {fileID: 5202970460160414345, guid: 1f0152f294fd0c849bf8bc724bdb5673, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 183656581}
     - target: {fileID: 7410225097785940395, guid: 1f0152f294fd0c849bf8bc724bdb5673, type: 3}
       propertyPath: _Player
       value: 
@@ -54193,7 +54197,7 @@ PrefabInstance:
       objectReference: {fileID: 5849746235925260095, guid: c060e779bea204bc882002bcdfc1e3c6, type: 3}
     - target: {fileID: 6188095959552030604, guid: 3d24b99291244450bbc18e9c84e58ec0, type: 3}
       propertyPath: BossWave
-      value: 5
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6188095959552030604, guid: 3d24b99291244450bbc18e9c84e58ec0, type: 3}
       propertyPath: wavecount
