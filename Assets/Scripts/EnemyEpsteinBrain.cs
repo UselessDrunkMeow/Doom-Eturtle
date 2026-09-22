@@ -110,6 +110,7 @@ public class EnemyEpsteinBrain : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         gameObject.SetActive(false);
+        EffectSpawner.SpawnEffect(transform.position, "DustExplosion");   
     }
 
     IEnumerator Damage()

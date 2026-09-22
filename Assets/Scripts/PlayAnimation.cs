@@ -10,7 +10,7 @@ public class PlayAnimation : MonoBehaviour
     {
         if (Animation == "TakeDamage")
         {
-            anim.SetTrigger("Damage");            
+            anim.SetTrigger("Damage");        
         }
         else if (Animation == "Death")
         {

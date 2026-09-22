@@ -22996,6 +22996,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5888013406770787510, guid: 935f521a6e167f0469a11097755749c4, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7354394070583458470, guid: 935f521a6e167f0469a11097755749c4, type: 3}
       propertyPath: _DamageFlash
       value: 
@@ -54169,7 +54173,7 @@ PrefabInstance:
       objectReference: {fileID: 5849746235925260095, guid: c060e779bea204bc882002bcdfc1e3c6, type: 3}
     - target: {fileID: 6188095959552030604, guid: 3d24b99291244450bbc18e9c84e58ec0, type: 3}
       propertyPath: BossWave
-      value: 9
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6188095959552030604, guid: 3d24b99291244450bbc18e9c84e58ec0, type: 3}
       propertyPath: wavecount

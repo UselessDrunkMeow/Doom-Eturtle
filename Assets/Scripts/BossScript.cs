@@ -74,9 +74,10 @@ public class BossScript : MonoBehaviour
     }
     void DOSHITONANABLE()
     {
+        LaserPoint.SetActive(false);
+        StartCoroutine(AudioManager._instance.switchAudio());
         Teleport();
         ChooseAction();
-        LaserPoint.SetActive(false);
         _UI_Manager.ToggleBossBar();
         print("odshguihguiodhgodshgdsijhguisd ENEABLEsdijlgdsgbdsg");
     }
@@ -361,10 +362,12 @@ public class BossScript : MonoBehaviour
     }
     public void Death()
     {
+        StopAllCoroutines();
         StartCoroutine(DeathCoroutine());
     }
     private IEnumerator DeathCoroutine()
     {
+        StartCoroutine(AudioManager._instance.switchAudio());
         _UI_Manager.ToggleBossBar();
         isDead = true;
         gameObject.GetComponent<PlayAnimation>().PlayAnimationFunction("Death");

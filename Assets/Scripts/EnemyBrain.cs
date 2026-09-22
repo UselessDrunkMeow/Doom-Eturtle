@@ -110,7 +110,7 @@ public class EnemyBrain : MonoBehaviour
 
         yield return new WaitForSeconds(0.5f);
         gameObject.SetActive(false);
-        EffectSpawner.SpawnEffect(transform.position, "Jefsplosion");        
+        EffectSpawner.SpawnEffect(transform.position, "Jefsplosion"); 
     }
 
     IEnumerator Damage()
