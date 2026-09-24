@@ -1,5 +1,14 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Creepy_Cat/3D Scifi Kit Starter Kit HD - URP.unitypackage.meta
 guid: 07ec1de4d3179674c8a60bc367461e05
+=======
+<<<<<<<< HEAD:Assets/TrueTrace-Unity-Pathtracer/TrueTrace/Models/1sponza (2)/sponza.mtl.meta
+guid: 3d39e27311756844fbc80174620098eb
+========
+guid: f26afc1e899c44c2a96fe14426a26414
+folderAsset: yes
+>>>>>>>> main:Assets/Adaptive Performance.meta
+>>>>>>> parent of 64a2f83 (Revert "OOH DEAR GOD 89 MERGE CONFLICTS"):Assets/TrueTrace-Unity-Pathtracer/TrueTrace/Models/1sponza (2)/sponza.mtl.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

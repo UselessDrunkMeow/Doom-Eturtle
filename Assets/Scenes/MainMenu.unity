@@ -1754,7 +1754,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed50314d999384777abaec700e5162c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraSensitivity
-  Player: {fileID: 1262534793850086243, guid: 935f521a6e167f0469a11097755749c4, type: 3}
   Slider: {fileID: 1025568121}
 --- !u!1 &1042856440
 GameObject:
