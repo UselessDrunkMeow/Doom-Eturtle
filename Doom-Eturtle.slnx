@@ -1,4 +1,6 @@
 ﻿<Solution>
+  <Project Path="TrueTrace.csproj" />
   <Project Path="Assembly-CSharp-Editor.csproj" />
   <Project Path="Assembly-CSharp.csproj" />
+  <Project Path="TrueTraceEditor.csproj" />
 </Solution>
