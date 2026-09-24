@@ -15,13 +15,8 @@ Material:
   - _DISABLE_SSR_TRANSPARENT
   - _NORMALMAP_TANGENT_SPACE
   m_InvalidKeywords: []
-<<<<<<< HEAD
   m_LightmapFlags: 3
   m_EnableInstancingVariants: 0
-=======
-  m_LightmapFlags: 7
-  m_EnableInstancingVariants: 1
->>>>>>> main
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: 2225
   stringTagMap: {}

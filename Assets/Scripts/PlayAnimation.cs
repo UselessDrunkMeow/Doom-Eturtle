@@ -10,7 +10,7 @@ public class PlayAnimation : MonoBehaviour
     {
         if (Animation == "TakeDamage")
         {
-            anim.SetTrigger("Damage");        
+            anim.SetTrigger("Damage");            
         }
         else if (Animation == "Death")
         {
@@ -24,7 +24,6 @@ public class PlayAnimation : MonoBehaviour
         else if (Animation == "Run")
         {
             IsRunning = !IsRunning;
-            anim.SetFloat("RunningOffset", Random.value);
             anim.SetBool("IsRunning", IsRunning);
         }
         else if(Animation == "RandomAttack")

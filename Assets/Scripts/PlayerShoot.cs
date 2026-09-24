@@ -57,9 +57,9 @@ public class PlayerShoot : MonoBehaviour
     {
         GameObject PooledBullet = ObjectPool.SharedInstance.GetPooledObject("Bullet"); 
         if (PooledBullet != null) {
-            PooledBullet.SetActive(true);
             PooledBullet.transform.position = _Firepoint.position;
             PooledBullet.transform.rotation = _Firepoint.rotation;
+            PooledBullet.SetActive(true);
             if (PooledBullet.TryGetComponent<Rigidbody>(out Rigidbody bulletRB))
             {
                 // Clear lingering momentum from object pool reuse

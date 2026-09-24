@@ -23,12 +23,12 @@ public class EnemySpawnerScript : MonoBehaviour
     public float distance;
     public float maxdistance;
     public GameObject Player;
-    public float BossWave;
+    private float BossWave;
     public List<BoxCollider> Spawnable;
     public HealthManager Jheffreighy;
     public HealthManager Æpfftsteyghnn;
     public HealthManager PlayerHealth;
-    public GameObject Boss;
+    public HealthManager Boss;
     public float DifficultyFactor = 1.1f;
 
     void Start()
@@ -58,26 +58,28 @@ public class EnemySpawnerScript : MonoBehaviour
         Æpfftsteyghnn._MaxHealth = Æpfftsteyghnn._MaxHealth * DifficultyFactor;
         if (wavecount >= BossWave)
         {
-            Boss.GetComponent<HealthManager>()._MaxHealth = Boss.GetComponent<HealthManager>()._MaxHealth * DifficultyFactor;
+            Boss._MaxHealth = Boss._MaxHealth * DifficultyFactor;
         }
     }
 
     void SpawnWave()
     {
-        //WaveHarder();
-        Debug.LogWarning("wavecount = " + wavecount + "Bosswave =" + BossWave);
-        if (wavecount == BossWave)
+        WaveHarder();
+        if (wavecount >= BossWave)
         {
-            Debug.LogWarning("WHAT THE FUCK WHY DO U AAAAAAAAA");
-            Boss.gameObject.SetActive(true);
-            Enemies.Add(Boss.gameObject);
-            Boss.GetComponent<HealthManager>()._CurrentHealth = Boss.GetComponent<HealthManager>()._MaxHealth;
-            Player.GetComponent<HealthManager>()._MaxHealth = Player.GetComponent<HealthManager>()._MaxHealth + 1;
-            BossWave = BossWave + 10;
+            GameObject PooledEnemy = ObjectPool.SharedInstance.GetPooledObject("Boss");
+            if (PooledEnemy != null)
+            {
+                Vector3 position = new Vector3(3.5f, 0.6f, 2.12f);
+                PooledEnemy.transform.position = position;
+                PooledEnemy.SetActive(true);
+                Enemies.Add(PooledEnemy);
+            }
+            PlayerHealth._MaxHealth = PlayerHealth._MaxHealth + 1;
+            BossWave = BossWave + 15;
         }
         else
         {
-            Debug.LogWarning("GVdasfvsddsgjydsguykdsghfegtr5jhtrtr987tr987jtr89j98jyr98j7474jjtr464jr654j546789657%$^&^&^&^%&*^&^%&*");
             while (SpawnCredit != 0)
             {
                 if (Spawnable.Count == 0)
@@ -114,6 +116,8 @@ public class EnemySpawnerScript : MonoBehaviour
                     PooledEnemy.transform.position = position;
                     PooledEnemy.SetActive(true);
                     Enemies.Add(PooledEnemy);
+
+                    SpawnCredit -= enemyOneCost;
                 }
 
                 else
@@ -124,10 +128,9 @@ public class EnemySpawnerScript : MonoBehaviour
             }
         }
 
-
-        SpawnCredit = InitialSpawnCredit + wavecount + 3;
         wavecount++;
         PlayerHealth._CurrentHealth = PlayerHealth._MaxHealth;
+        SpawnCredit = InitialSpawnCredit + wavecount + 3;
     }
 
     void WhatEnemyToSpawn()
@@ -151,11 +154,10 @@ public class EnemySpawnerScript : MonoBehaviour
             }
         }
 
-        else if (SpawnCredit < enemyTwoCost)
+        else if (SpawnCredit <= enemyTwoCost)
         {
             EnemyToSpawn = "Jheffreighy";
             print("Jheffreighy SPAWNERD");
-            SpawnCredit = SpawnCredit - enemyOneCost;
         }
     }
 
@@ -191,7 +193,7 @@ public class EnemySpawnerScript : MonoBehaviour
 
         CleanEnemyList();
 
-        if (Enemies.Count <= 0 && Spawnable.Count > 0)
+        if (Enemies.Count == 0 && Spawnable.Count > 0)
         {
             Debug.Log("spawn wave");
             SpawnWave();

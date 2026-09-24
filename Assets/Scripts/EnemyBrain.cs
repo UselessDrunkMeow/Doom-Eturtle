@@ -16,7 +16,6 @@ public class EnemyBrain : MonoBehaviour
     public int _Damage;
     public LayerMask _LayerMask;
     public bool _Death = false;
-    public Transform damageVFXPoint;
 
     HealthManager healthManager;
     Material color;
@@ -100,7 +99,8 @@ public class EnemyBrain : MonoBehaviour
     public void onDeath()
     {
         _Death = true;
-        healthManager.enabled = false;        
+        healthManager.enabled = false;
+        EffectSpawner.SpawnEffect(gameObject.transform.position, "EnergyBlast");
         StartCoroutine(DeathCoroutine());
 
     }
@@ -108,9 +108,9 @@ public class EnemyBrain : MonoBehaviour
     {
         gameObject.GetComponent<PlayAnimation>().PlayAnimationFunction("Death");
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
+
         gameObject.SetActive(false);
-        EffectSpawner.SpawnEffect(transform.position, "Jefsplosion"); 
     }
 
     IEnumerator Damage()
@@ -119,7 +119,6 @@ public class EnemyBrain : MonoBehaviour
         {
             healthManager._CurrentHealth--;
             gameObject.GetComponent<PlayAnimation>().PlayAnimationFunction("TakeDamage");
-            EffectSpawner.SpawnEffect(damageVFXPoint.position, "DamageVFX");
             //color.color = UnityEngine.Color.darkRed;
             agent.isStopped = true;
             yield return new WaitForSeconds(_DamageStun);

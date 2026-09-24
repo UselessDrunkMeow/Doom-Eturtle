@@ -1,32 +1,17 @@
-// CameraSensitivity.cs  — on the menu slider
+using StarterAssets;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+
 
 public class CameraSensitivity : MonoBehaviour
 {
-    public const string PrefKey = "CameraSensitivity";
-    public const float DefaultValue = 1f;
-
+    public FirstPersonController Player;
     public Slider Slider;
-
-    void Start()
+    void Update()
     {
-        Slider.SetValueWithoutNotify(PlayerPrefs.GetFloat(PrefKey, DefaultValue));
-        Slider.onValueChanged.AddListener(OnChanged);
-    }
-
-    void OnDestroy()
-    {
-        if (Slider != null) Slider.onValueChanged.RemoveListener(OnChanged);
-    }
-
-    void OnChanged(float value)
-    {
-        PlayerPrefs.SetFloat(PrefKey, value);
-        PlayerPrefs.Save();
-
-        // apply immediately if a player is present (e.g. pause menu)
-        var player = Object.FindAnyObjectByType<StarterAssets.FirstPersonController>();
-        if (player != null) player.RotationSpeed = value;
+        Player.RotationSpeed = Slider.value;
     }
 }

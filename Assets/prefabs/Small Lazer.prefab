@@ -66,7 +66,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 17d7feb19dfaa764fa5d601a212bf824, type: 2}
+  - {fileID: 2100000, guid: 0f20ea35ca05c49f9995014f20eed07e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -167,8 +167,7 @@ MonoBehaviour:
   MaxProjectileLifetime: 5
   ProjectileLifetime: 0
   _Bounce: 1
-  _MaxBounceCount: 3
-  _AOERange: 2.25
+  _MaxBounceCount: 5
 --- !u!135 &3355097582199475713
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -176,7 +175,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2022262299169323760}
-  m_Material: {fileID: 13400000, guid: 97cd8f0b2bb95df499ee5f3f40950c2d, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

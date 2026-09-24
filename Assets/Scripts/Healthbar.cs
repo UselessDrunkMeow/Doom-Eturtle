@@ -8,7 +8,7 @@ public class Healthbar : MonoBehaviour
     public HealthManager healthManager;
     void Start()
     {
-        //healthManager = FindAnyObjectByType<BossScript>().gameObject.GetComponent<HealthManager>();
+        
     }
 
     // Update is called once per frame
