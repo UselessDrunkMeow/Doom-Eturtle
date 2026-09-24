@@ -189,7 +189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31394aa05878563408489d5c1688f3a0, type: 3}
   m_Name: PathTracing
   m_EditorClassIdentifier: Unity.RenderPipelines.HighDefinition.Runtime::UnityEngine.Rendering.HighDefinition.PathTracing
-  active: 1
+  active: 0
   enable:
     m_OverrideState: 1
     m_Value: 1
@@ -197,7 +197,7 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value:
       serializedVersion: 2
-      m_Bits: 4294967295
+      m_Bits: 963
   maximumSamples:
     m_OverrideState: 1
     m_Value: 256
@@ -211,17 +211,17 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: 10
   denoising:
-    m_OverrideState: 0
-    m_Value: 0
+    m_OverrideState: 1
+    m_Value: 2
   useAOVs:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 1
   temporal:
-    m_OverrideState: 0
-    m_Value: 0
+    m_OverrideState: 1
+    m_Value: 1
   separateVolumetrics:
-    m_OverrideState: 0
-    m_Value: 0
+    m_OverrideState: 1
+    m_Value: 1
   asyncDenoising:
     m_OverrideState: 0
     m_Value: 1
@@ -233,7 +233,7 @@ MonoBehaviour:
     m_Value: {x: 1, y: 1, z: 0, w: 0}
   seedMode:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 1
   customSeed:
     m_OverrideState: 1
     m_Value: 0
