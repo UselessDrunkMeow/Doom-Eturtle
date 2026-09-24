@@ -1,10 +1,6 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Xml;
 using UnityEngine;
-using UnityEngine.UIElements;
-
 //States the boss can be in, Set the state via code to execute the corresponding functions
 //More states can be added if needed, and the names should be changed to describe the attack
 public enum BossState
@@ -25,6 +21,7 @@ public class BossScript : MonoBehaviour
     public float _CurrentLookSpeed;
     public LayerMask _Mask;
     public int randomNumber;
+    [SerializeField] UI_Manager _UI_Manager;
     HealthManager healthManager;
     EffectSpawner effectSpawner;
 
@@ -58,17 +55,31 @@ public class BossScript : MonoBehaviour
     public Transform _Firepoint;
     public float _LazerSpeed;
     public float _TimeBetweenShots;
+    public Transform damageVFXPoint;
+    bool isDead = false;
 
-
-    private void Start()
+    private void Awake()
     {
+        _UI_Manager = FindAnyObjectByType<UI_Manager>();
         healthManager = GetComponent<HealthManager>();
         effectSpawner = GetComponent<EffectSpawner>();
-        ChooseAction();
     }
-    public void OnEnable()
+    private void Start()
+    {
+
+    }
+    private void OnEnable()
+    {
+        DOSHITONANABLE();
+    }
+    void DOSHITONANABLE()
     {
         LaserPoint.SetActive(false);
+        StartCoroutine(AudioManager._instance.switchAudio());
+        Teleport();
+        ChooseAction();
+        _UI_Manager.ToggleBossBar();
+        print("odshguihguiodhgodshgdsijhguisd ENEABLEsdijlgdsgbdsg");
     }
 
     //sellect a random action to take, like one of its ttacks, or summoning of extra enemies, teleporting etc
@@ -76,61 +87,64 @@ public class BossScript : MonoBehaviour
     //make sure to start each case with the highest number of the case before it.
     public void ChooseAction()
     {
-        print("uuuuhm halloooo???");
-        randomNumber = UnityEngine.Random.Range(0, 13);
-        switch (randomNumber)
+        if (!isDead)
         {
-            case >= 0 and < 3:
-                _BossState = BossState.Lazer;
-                print(_BossState);
-                break;
+            print("uuuuhm halloooo???");
+            randomNumber = UnityEngine.Random.Range(0, 13);
+            switch (randomNumber)
+            {
+                case >= 0 and < 3:
+                    _BossState = BossState.Lazer;
+                    print(_BossState);
+                    break;
 
-            case >= 3 and < 5:
-                _BossState = BossState.CrownSlam;
-                print(_BossState);
-                break;
+                case >= 3 and < 5:
+                    _BossState = BossState.CrownSlam;
+                    print(_BossState);
+                    break;
 
-            case >= 5 and < 8:
-                _BossState = BossState.LazerBurst;
-                print(_BossState);
-                break;
+                case >= 5 and < 8:
+                    _BossState = BossState.LazerBurst;
+                    print(_BossState);
+                    break;
 
-            case >= 8 and < 10:
-                print(_BossState);
-                _BossState = BossState.Teleporting;
-                break;
+                case >= 8 and < 10:
+                    print(_BossState);
+                    _BossState = BossState.Teleporting;
+                    break;
 
-            case >= 10 and < 13:
-                print(_BossState);
-                _BossState = BossState.Summon;
-                break;
-        }
+                case >= 10 and < 13:
+                    print(_BossState);
+                    _BossState = BossState.Summon;
+                    break;
+            }
 
-        switch (_BossState)
-        {
-            case BossState.Idle:
-                StartCoroutine(Idle());
-                break;
+            switch (_BossState)
+            {
+                case BossState.Idle:
+                    StartCoroutine(Idle());
+                    break;
 
-            case BossState.Lazer:
-                StartCoroutine(Lazer());
-                break;
+                case BossState.Lazer:
+                    StartCoroutine(Lazer());
+                    break;
 
-            case BossState.CrownSlam:
-                StartCoroutine(CrownSlam());
-                break;
+                case BossState.CrownSlam:
+                    StartCoroutine(CrownSlam());
+                    break;
 
-            case BossState.LazerBurst:
-                StartCoroutine(LazerBurst());
-                break;
+                case BossState.LazerBurst:
+                    StartCoroutine(LazerBurst());
+                    break;
 
-            case BossState.Teleporting:
-                StartCoroutine(Teleporting());
-                break;
+                case BossState.Teleporting:
+                    StartCoroutine(Teleporting());
+                    break;
 
-            case BossState.Summon:
-                StartCoroutine(Summon());
-                break;
+                case BossState.Summon:
+                    StartCoroutine(Summon());
+                    break;
+            }
         }
     }
     private void Update()
@@ -146,7 +160,7 @@ public class BossScript : MonoBehaviour
             Crown.transform.position = Vector3.MoveTowards(Crown.transform.position, new Vector3(_Player.transform.position.x, _Player.transform.position.y + 5, _Player.transform.position.z), 0.1f);
             Crown.transform.localScale = Vector3.Lerp(Crown.transform.localScale, GrowScale, 0.5f * Time.deltaTime);
         }
-        
+
         if (SlamCrown) //Shoots a raycast down and quickly moves the crown to the ray point.
         {
             RaycastHit hit;
@@ -234,18 +248,18 @@ public class BossScript : MonoBehaviour
         SlamCrown = true;
         yield return new WaitForSeconds(0.1f);
         EffectSpawner.SpawnEffect(Crown.transform.position, "DustExplosion");
-        yield return new WaitForSeconds(0.4f); 
-        
+        yield return new WaitForSeconds(0.4f);
+
         if (Vector3.Distance(Crown.transform.position, _Player.transform.position) <= 5)
         {
             _Player.GetComponent<HealthManager>().UpdateHealth(2);
         }
 
-        yield return new WaitForSeconds(5f); //Moves crown back to the boss
+        yield return new WaitForSeconds(2f); //Moves crown back to the boss
         SlamCrown = false;
         MoveCrownToBoss = true;
 
-        yield return new WaitForSeconds(2); //Sets the data back to how it was
+        yield return new WaitForSeconds(0.25f); //Sets the data back to how it was
         Crown.transform.parent = TempParent;
         Crown.transform.localScale = TempScale;
         Crown.transform.localRotation = TempRot;
@@ -255,6 +269,7 @@ public class BossScript : MonoBehaviour
 
     IEnumerator LazerBurst()
     {
+        _CurrentLookSpeed = _LazerLookSpeed;
         Debug.LogError("Lazer Burstg Called! :D");
         yield return new WaitForSeconds(_TimeBetweenShots);
         Shoot();
@@ -276,8 +291,7 @@ public class BossScript : MonoBehaviour
         Shoot();
         yield return new WaitForSeconds(_TimeBetweenShots);
         Shoot();
-
-
+        _CurrentLookSpeed = _NormalLookSpeed;
         StartCoroutine(Idle());
     }
 
@@ -338,12 +352,29 @@ public class BossScript : MonoBehaviour
     {
         if (healthManager != null)
         {
+            EffectSpawner.SpawnEffect(damageVFXPoint.position, "DamageVFX");
             healthManager._CurrentHealth--;
         }
         else
         {
             UnityEngine.Debug.LogError("no healthmanager");
         }
+    }
+    public void Death()
+    {
+        StopAllCoroutines();
+        StartCoroutine(DeathCoroutine());
+    }
+    private IEnumerator DeathCoroutine()
+    {
+        StartCoroutine(AudioManager._instance.switchAudio());
+        _UI_Manager.ToggleBossBar();
+        isDead = true;
+        gameObject.GetComponent<PlayAnimation>().PlayAnimationFunction("Death");
+        yield return new WaitForSeconds(6.35f);
+
+        Crown.SetActive(false);
+        gameObject.SetActive(false);
     }
 
     private void OnCollisionEnter(Collision collision)

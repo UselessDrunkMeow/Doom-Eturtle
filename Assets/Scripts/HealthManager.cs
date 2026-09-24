@@ -10,15 +10,18 @@ public class HealthManager : MonoBehaviour
     public DamageFlash _DamageFlash;
     public float IFrames;
     public bool IsPlayer;
+    bool isDead;
     float time;
 
 
     private void Start()
     {
         _CurrentHealth = _MaxHealth;
+        isDead = false;
     }
     void OnEnable()
     {
+        isDead = false;
         _CurrentHealth = _MaxHealth;
     }
     public void UpdateHealth(int damage)
@@ -36,8 +39,9 @@ public class HealthManager : MonoBehaviour
     void Update()
     {
         time = time + Time.deltaTime;
-        if (_CurrentHealth <= 0)
+        if (_CurrentHealth <= 0 && !isDead)
         {
+            isDead = true;
             OnDeath.Invoke();
         }
     }

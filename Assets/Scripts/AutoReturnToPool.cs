@@ -4,10 +4,26 @@ using UnityEngine;
 public class AutoReturnToPool : MonoBehaviour
 {
     private ParticleSystem ps;
+    [SerializeField] private AudioSource audio;
+    [SerializeField] private AudioClip explosion;
 
     private void Awake()
     {
         ps = GetComponent<ParticleSystem>();
+        
+    }
+    void OnEnable()
+    {
+        if(audio == null)
+        {
+            Debug.Log("no audio");
+        }
+        else
+        {
+            audio.clip = explosion;
+            audio.Play();
+        }
+        
     }
 
     private void Update()
