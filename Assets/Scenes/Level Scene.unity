@@ -62617,10 +62617,26 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 1815063722467821574, guid: 1f0152f294fd0c849bf8bc724bdb5673, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 0f20ea35ca05c49f9995014f20eed07e, type: 2}
+    - target: {fileID: 2389932026224547274, guid: 1f0152f294fd0c849bf8bc724bdb5673, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 0f20ea35ca05c49f9995014f20eed07e, type: 2}
+    - target: {fileID: 2945289714412735459, guid: 1f0152f294fd0c849bf8bc724bdb5673, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 0f20ea35ca05c49f9995014f20eed07e, type: 2}
     - target: {fileID: 3341011302913903211, guid: 1f0152f294fd0c849bf8bc724bdb5673, type: 3}
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 3440098440530188642, guid: 1f0152f294fd0c849bf8bc724bdb5673, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 0f20ea35ca05c49f9995014f20eed07e, type: 2}
     - target: {fileID: 3657118565394220725, guid: 1f0152f294fd0c849bf8bc724bdb5673, type: 3}
       propertyPath: m_Layer
       value: 8
@@ -62741,6 +62757,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 8404606318080670548, guid: 1f0152f294fd0c849bf8bc724bdb5673, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 0f20ea35ca05c49f9995014f20eed07e, type: 2}
+    - target: {fileID: 9079442807317660996, guid: 1f0152f294fd0c849bf8bc724bdb5673, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 0f20ea35ca05c49f9995014f20eed07e, type: 2}
     - target: {fileID: 9098698667131019743, guid: 1f0152f294fd0c849bf8bc724bdb5673, type: 3}
       propertyPath: m_Name
       value: Boss
@@ -151291,7 +151315,7 @@ MonoBehaviour:
   version: 2
   globalVolume: 0
   mode: 1
-  size: {x: 76.9997, y: 14.654403, z: 67.00242}
+  size: {x: 76.99971, y: 14.654402, z: 67.00242}
   overrideRendererFilters: 0
   minRendererVolumeSize: 0.1
   objectLayerMask:
@@ -151329,7 +151353,7 @@ Transform:
   m_GameObject: {fileID: 1813201282}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.2744865, y: 5.0772014, z: 3.8758965}
+  m_LocalPosition: {x: 2.2744904, y: 5.0772004, z: 3.8758965}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
