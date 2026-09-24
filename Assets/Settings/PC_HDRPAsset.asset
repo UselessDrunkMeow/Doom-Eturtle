@@ -205,7 +205,7 @@ MonoBehaviour:
   m_ObsoleteShaderVariantLogLevel: 0
   m_ObsoleteLensAttenuation: 0
   m_ObsoleteDiffusionProfileSettingsList: []
-  m_PrefilterUseLegacyLightmaps: 0
+  m_PrefilterUseLegacyLightmaps: 1
   m_PrefilterUseLightmapBicubicSampling: 0
   m_ShouldUseConservativeEnclosingSphere: 0
   m_NumIterationsEnclosingSphere: 64
@@ -225,9 +225,9 @@ MonoBehaviour:
       m_Values: 000000000000000000000000
       m_SchemaId:
         m_Id: With3Levels
-    supportVolumetrics: 1
+    supportVolumetrics: 0
     supportVolumetricClouds: 0
-    supportLightLayers: 1
+    supportLightLayers: 0
     renderingLayerMaskBuffer: 1
     supportWater: 0
     waterSimulationResolution: 128
@@ -262,7 +262,7 @@ MonoBehaviour:
       m_Values: 800000000001000000020000
       m_SchemaId:
         m_Id: With3Levels
-    supportDecals: 1
+    supportDecals: 0
     supportDecalLayers: 0
     supportSurfaceGradient: 1
     decalNormalBufferHP: 0
@@ -349,7 +349,7 @@ MonoBehaviour:
       maxPunctualShadowMapResolution: 2048
       maxAreaShadowMapResolution: 2048
       supportScreenSpaceShadows: 0
-      supportContactShadows: 1
+      supportContactShadows: 0
       maxScreenSpaceShadowSlots: 4
       screenSpaceShadowBufferFormat: 48
     decalSettings:
@@ -371,6 +371,7 @@ MonoBehaviour:
       advancedUpscalersByPriority: 
       advancedUpscalerNames:
       - DLSS
+      - FSR2
       DLSSPerfQualitySetting: 0
       DLSSInjectionPoint: 0
       TAAUInjectionPoint: 0
@@ -522,9 +523,9 @@ MonoBehaviour:
       - 0.666
       - 0.5
     gpuResidentDrawerSettings:
-      mode: 0
-      smallMeshScreenPercentage: 0
-      enableOcclusionCullingInCameras: 0
+      mode: 1
+      smallMeshScreenPercentage: 1
+      enableOcclusionCullingInCameras: 1
       useDepthPrepassForOccluders: 1
     m_ObsoleteLightLayerName0: 
     m_ObsoleteLightLayerName1: 

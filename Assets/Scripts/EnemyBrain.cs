@@ -25,11 +25,21 @@ public class EnemyBrain : MonoBehaviour
     float distance;
     bool hitPlayer;
     bool isAttacking;
+
+    [Header("Pathfinding Throttle")]
+    [Tooltip("How often (seconds) the enemy recalculates its path to the player.")]
+    [SerializeField] private float _RepathInterval = 0.25f;
+    [Tooltip("Only repath if the player moved at least this far since the last path.")]
+    [SerializeField] private float _RepathMinPlayerMove = 0.5f;
+    float repathTimer;
+    Vector3 lastTargetPos = new Vector3(float.MaxValue, 0, 0);
     void OnEnable()
     {
         healthManager = GetComponent<HealthManager>();
         healthManager.enabled = true;
         _Death = false;
+        repathTimer = UnityEngine.Random.Range(0f, _RepathInterval);
+        lastTargetPos = new Vector3(float.MaxValue, 0, 0);
     }
     void Start()
     {
@@ -52,7 +62,18 @@ public class EnemyBrain : MonoBehaviour
     }
     void Update()
     {   //Set agent desitnation to the players possition every frame so it can chase it.
-        agent.SetDestination(playerPos.position);
+        // Recalculating a NavMesh path every frame for every enemy is what eats the CPU.
+        // Only repath a few times per second, and only when the player actually moved.
+        repathTimer -= Time.deltaTime;
+        if (repathTimer <= 0f)
+        {
+            repathTimer = _RepathInterval;
+            if ((playerPos.position - lastTargetPos).sqrMagnitude >= _RepathMinPlayerMove * _RepathMinPlayerMove)
+            {
+                lastTargetPos = playerPos.position;
+                agent.SetDestination(playerPos.position);
+            }
+        }
 
         //Checks the distance between the enemy and the player, and if its close enough, it will attack
         distance = Vector3.Distance(transform.position, playerPos.position);
