@@ -21,9 +21,7 @@ public class PlayerShoot : MonoBehaviour
     void Update()
     {
         time = time + Time.deltaTime;
-        // GetMouseButtonDown also catches very short clicks that happen between two frames when FPS is low.
-        bool wantsToShoot = Input.GetMouseButton(0) || Input.GetMouseButtonDown(0);
-        if (wantsToShoot && time >= _FireRate)
+        if (Input.GetMouseButton(0)&& _FireRate <= time)
         {
             time = 0;
             GetHitPosition();
@@ -35,25 +33,23 @@ public class PlayerShoot : MonoBehaviour
     }
 
     //Shoots a raycast from the center of the camera, and makes the firepoint object look at the hit location.
-    //The firepoint is re-aimed on EVERY shot, so it can never get stuck pointing in an old/wrong direction.
     void GetHitPosition()
-    {
+    {       
         RaycastHit hit;
-        // _Mask should contain the layers you CAN hit (Default, enemies, Boss...), NOT Player or Bullet.
-        if (Physics.Raycast(_CameraPoint.position, _CameraPoint.forward, out hit, Mathf.Infinity, _Mask, QueryTriggerInteraction.Ignore))
+        Physics.Raycast(_CameraPoint.position, _CameraPoint.forward, out hit, Mathf.Infinity, _Mask);        
+        if (hit.transform != null)
         {
             hit_pos = hit.point;
+            _Firepoint.transform.LookAt(hit_pos);
+
+            //Debug check to visually see where the hit point is located.
+            //Instantiate(testsphere, hit_pos, new Quaternion(0,0,0,0));
         }
         else
         {
-            // Nothing hit (e.g. shooting at the sky): aim at a point far away straight ahead.
-            hit_pos = _CameraPoint.position + _CameraPoint.forward * 1000f;
+            //idk if this is needed but it broke without it so ig its here.
+            _Firepoint.transform.position = _Firepoint.transform.position;
         }
-        _Firepoint.LookAt(hit_pos);
-
-        //Debug check to visually see where the hit point is located.
-        //Instantiate(testsphere, hit_pos, Quaternion.identity);
-
         Shoot();
     }
     //spawns the bullet prefab at the firepoints position and rotation, then adds force to shoot it forward.
@@ -61,14 +57,11 @@ public class PlayerShoot : MonoBehaviour
     {
         GameObject PooledBullet = ObjectPool.SharedInstance.GetPooledObject("Bullet"); 
         if (PooledBullet != null) {
-            // Move the bullet to the gun BEFORE activating it, so it never appears (and collides) at its old spot.
-            PooledBullet.transform.SetPositionAndRotation(_Firepoint.position, _Firepoint.rotation);
             PooledBullet.SetActive(true);
+            PooledBullet.transform.position = _Firepoint.position;
+            PooledBullet.transform.rotation = _Firepoint.rotation;
             if (PooledBullet.TryGetComponent<Rigidbody>(out Rigidbody bulletRB))
             {
-                bulletRB.position = _Firepoint.position;
-                bulletRB.rotation = _Firepoint.rotation;
-
                 // Clear lingering momentum from object pool reuse
                 bulletRB.linearVelocity = Vector3.zero;
                 bulletRB.angularVelocity = Vector3.zero;
