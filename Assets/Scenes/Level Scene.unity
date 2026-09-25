@@ -158793,15 +158793,15 @@ PrefabInstance:
       objectReference: {fileID: 863210637}
     - target: {fileID: 7472856297546997916, guid: 1f0152f294fd0c849bf8bc724bdb5673, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.36645
+      value: 3.319
       objectReference: {fileID: 0}
     - target: {fileID: 7472856297546997916, guid: 1f0152f294fd0c849bf8bc724bdb5673, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.59269
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7472856297546997916, guid: 1f0152f294fd0c849bf8bc724bdb5673, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.14377
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 7472856297546997916, guid: 1f0152f294fd0c849bf8bc724bdb5673, type: 3}
       propertyPath: m_LocalRotation.w
@@ -158809,15 +158809,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7472856297546997916, guid: 1f0152f294fd0c849bf8bc724bdb5673, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7472856297546997916, guid: 1f0152f294fd0c849bf8bc724bdb5673, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7472856297546997916, guid: 1f0152f294fd0c849bf8bc724bdb5673, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7472856297546997916, guid: 1f0152f294fd0c849bf8bc724bdb5673, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -163045,7 +163045,7 @@ PrefabInstance:
       objectReference: {fileID: 5849746235925260095, guid: c060e779bea204bc882002bcdfc1e3c6, type: 3}
     - target: {fileID: 6188095959552030604, guid: 3d24b99291244450bbc18e9c84e58ec0, type: 3}
       propertyPath: BossWave
-      value: 9
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6188095959552030604, guid: 3d24b99291244450bbc18e9c84e58ec0, type: 3}
       propertyPath: wavecount
@@ -184799,5 +184799,5 @@ SceneRoots:
   - {fileID: 1887761607}
   - {fileID: 1236003938}
   - {fileID: 2119642017}
-  - {fileID: 1886750118}
   - {fileID: 880136881}
+  - {fileID: 1886750118}

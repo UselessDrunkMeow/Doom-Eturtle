@@ -70,16 +70,16 @@ public class BossScript : MonoBehaviour
     }
     private void OnEnable()
     {
-        DOSHITONANABLE();
+        StartCoroutine(DOSHITONANABLE());
     }
-    void DOSHITONANABLE()
+    IEnumerator DOSHITONANABLE()
     {
         LaserPoint.SetActive(false);
         StartCoroutine(AudioManager._instance.switchAudio());
+        yield return new WaitForSeconds(6.5f);
         Teleport();
         ChooseAction();
         _UI_Manager.ToggleBossBar();
-        print("odshguihguiodhgodshgdsijhguisd ENEABLEsdijlgdsgbdsg");
     }
 
     //sellect a random action to take, like one of its ttacks, or summoning of extra enemies, teleporting etc
@@ -157,7 +157,7 @@ public class BossScript : MonoBehaviour
 
         if (MoveCrownToPlayer == true)
         {
-            Crown.transform.position = Vector3.MoveTowards(Crown.transform.position, new Vector3(_Player.transform.position.x, _Player.transform.position.y + 5, _Player.transform.position.z), 0.1f);
+            Crown.transform.position = Vector3.MoveTowards(Crown.transform.position, new Vector3(_Player.transform.position.x, _Player.transform.position.y + 5, _Player.transform.position.z), 10f * Time.deltaTime);
             Crown.transform.localScale = Vector3.Lerp(Crown.transform.localScale, GrowScale, 0.5f * Time.deltaTime);
         }
 

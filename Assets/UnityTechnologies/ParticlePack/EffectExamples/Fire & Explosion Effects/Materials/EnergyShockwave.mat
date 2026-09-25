@@ -196,13 +196,13 @@ Material:
     - _BaseColor: {r: 8.000001, g: 8.000001, b: 8.000001, a: 1}
     - _BaseColorAddSubDiff: {r: 0, g: 0, b: 0, a: 0}
     - _CameraFadeParams: {r: 1, g: 1, b: 0, a: 0}
-    - _Color: {r: 8.000003, g: 8.000003, b: 8.000003, a: 1}
+    - _Color: {r: 0.41960782, g: 0.9411765, b: 1, a: 1}
     - _ColorAddSubDiff: {r: 1, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissiveColor: {r: 0.4198113, g: 0.9408545, b: 1, a: 1}
+    - _EmissiveColor: {r: 0.8396226, g: 1.881709, b: 2, a: 1}
     - _EmissiveColorLDR: {r: 0, g: 0, b: 0, a: 1}
     - _SoftParticleFadeParams: {r: 0, g: 1, b: 0, a: 0}
-    - _UnlitColor: {r: 8.000002, g: 8.000002, b: 8.000002, a: 1}
+    - _UnlitColor: {r: 0.41960785, g: 0.9411765, b: 1, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &5801118139370332956
