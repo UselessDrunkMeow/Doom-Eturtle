@@ -28,8 +28,8 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
+  - _ALPHATEST_ON
   - _EMISSIVE_COLOR_MAP
-  - _SURFACE_TYPE_TRANSPARENT
   m_InvalidKeywords:
   - _COLOROVERLAY_ON
   - _DISTORTION_ON
@@ -38,12 +38,12 @@ Material:
   - _FLIPBOOKBLENDING_OFF
   - _NORMALMAP
   - _SOFTPARTICLES_ON
-  m_LightmapFlags: 2
+  m_LightmapFlags: 1
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3000
+  m_CustomRenderQueue: 2450
   stringTagMap:
-    RenderType: Transparent
+    RenderType: TransparentCutout
   disabledShaderPasses:
   - DistortionVectors
   - MOTIONVECTORS
@@ -124,9 +124,9 @@ Material:
     - _AddPrecomputedVelocity: 0
     - _AlbedoAffectEmissive: 0
     - _AlphaClip: 0
-    - _AlphaCutoff: 0.5
-    - _AlphaCutoffEnable: 0
-    - _AlphaDstBlend: 10
+    - _AlphaCutoff: 0.73
+    - _AlphaCutoffEnable: 1
+    - _AlphaDstBlend: 0
     - _AlphaRemapMax: 1
     - _AlphaRemapMin: 0
     - _AlphaSrcBlend: 1
@@ -141,7 +141,7 @@ Material:
     - _ColorMode: 3
     - _Cull: 2
     - _CullMode: 2
-    - _Cutoff: 0.5
+    - _Cutoff: 0.73
     - _DetailNormalMapScale: 1
     - _Distortion: 0.046
     - _DistortionBlend: 0.552
@@ -165,7 +165,7 @@ Material:
     - _DistortionVectorScale: 2
     - _DoubleSidedEnable: 0
     - _DoubleSidedGIMode: 0
-    - _DstBlend: 10
+    - _DstBlend: 0
     - _DstBlendAlpha: 10
     - _EmissionEnabled: 0
     - _EmissiveExposureWeight: 1
@@ -203,16 +203,16 @@ Material:
     - _StencilWriteMaskDistortionVec: 4
     - _StencilWriteMaskMV: 43
     - _Surface: 1
-    - _SurfaceType: 1
+    - _SurfaceType: 0
     - _TransparentCullMode: 2
     - _TransparentSortPriority: 0
     - _TransparentZWrite: 0
     - _UVSec: 0
     - _UseEmissiveIntensity: 0
-    - _ZTestDepthEqualForOpaque: 4
+    - _ZTestDepthEqualForOpaque: 3
     - _ZTestModeDistortion: 4
     - _ZTestTransparent: 4
-    - _ZWrite: 0
+    - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1.1887974, g: 0.7667743, b: 0.433911, a: 1}
     - _BaseColorAddSubDiff: {r: 0, g: 0, b: 0, a: 0}
